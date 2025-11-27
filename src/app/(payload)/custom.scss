@@ -1,0 +1,38 @@
+// TSFTI Radio custom styles
+@layer payload {
+  html {
+    font-size: 14px;
+  }
+  :root {
+    --base-px: 24;
+    --base-body-size: 16;
+    --base: calc((var(--base-px) / var(--base-body-size)) * 1rem);
+
+    // Base color shades
+    --color-base-0: oklch(1 0 0);
+    --color-base-50: oklch(0.9756 0.011 243.65);
+    --color-base-100: oklch(0.9483 0.022 243.8);
+    --color-base-150: oklch(0.9194 0.0351 241.74);
+    --color-base-200: oklch(0.8905 0.0481 239.68);
+    --color-base-250: oklch(0.8474 0.0694 238.84);
+    --color-base-300: oklch(0.8043 0.0907 237.99);
+    --color-base-350: oklch(0.7579 0.1104 238.6);
+    --color-base-400: oklch(0.7115 0.1301 239.2);
+    --color-base-450: oklch(0.6714 0.1371 241.21);
+    --color-base-500: oklch(0.6313 0.144 243.22);
+    --color-base-550: oklch(0.5846 0.1409 245.44);
+    --color-base-600: oklch(0.5378 0.1378 247.65);
+    --color-base-650: oklch(0.4999 0.1266 247.53);
+    --color-base-700: oklch(0.462 0.1154 247.4);
+    --color-base-750: oklch(0.4366 0.1064 246.95);
+    --color-base-800: oklch(0.4112 0.0974 246.5);
+    --color-base-850: oklch(0.3894 0.0892 246.51);
+    --color-base-900: oklch(0.3676 0.0809 246.52);
+    --color-base-950: oklch(0.294 0.0648 249.14);
+    --color-base-1000: oklch(0.2 0.05 249);
+  }
+  .nav__link{
+    font-size: 1.25rem;
+    padding-block: 0.5rem;
+  }
+}

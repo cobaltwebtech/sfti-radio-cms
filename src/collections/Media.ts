@@ -1,20 +1,19 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload';
+import { mediaCollectionAccess } from '../access';
 
 export const Media: CollectionConfig = {
-  slug: 'media',
-  access: {
-    read: () => true,
-  },
-  fields: [
-    {
-      name: 'alt',
-      type: 'text',
-      required: true,
-    },
-  ],
-  upload: {
-    // These are not supported on Workers yet due to lack of sharp
-    crop: false,
-    focalPoint: false,
-  },
-}
+	slug: 'media',
+	access: mediaCollectionAccess,
+	fields: [
+		{
+			name: 'alt',
+			type: 'text',
+			required: true,
+		},
+	],
+	upload: {
+		// These are not supported on Workers yet due to lack of sharp
+		crop: false,
+		focalPoint: false,
+	},
+};
