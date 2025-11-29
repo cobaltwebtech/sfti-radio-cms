@@ -1,6 +1,6 @@
 {
   "name": "tsfti-radio-cms",
-  "version": "0.0.1",
+  "version": "0.1.0_alpha",
   "description": "TSFTI Radio CMS using Payload",
   "license": "MIT",
   "type": "module",
@@ -28,8 +28,7 @@
     "up:biome": "pnpm up @biomejs/biome@latest && pnpm biome migrate --write"
   },
   "dependencies": {
-    "@biomejs/biome": "^2.3.7",
-    "@opennextjs/cloudflare": "^1.13.1",
+    "@opennextjs/cloudflare": "^1.14.0",
     "@payloadcms/db-d1-sqlite": "3.65.0",
     "@payloadcms/next": "3.65.0",
     "@payloadcms/plugin-form-builder": "^3.65.0",
@@ -37,7 +36,7 @@
     "@payloadcms/storage-r2": "3.65.0",
     "@payloadcms/ui": "3.65.0",
     "cross-env": "^10.1.0",
-    "dotenv": "17.2.3",
+    "dotenv": "^17.2.3",
     "graphql": "^16.12.0",
     "next": "16.0.5",
     "payload": "3.65.0",
@@ -45,18 +44,19 @@
     "react-dom": "19.2.0"
   },
   "devDependencies": {
-    "@playwright/test": "1.57.0",
-    "@testing-library/react": "16.3.0",
+    "@biomejs/biome": "^2.3.8",
+    "@playwright/test": "^1.57.0",
+    "@testing-library/react": "^16.3.0",
     "@types/node": "^24.10.1",
-    "@types/react": "19.2.7",
-    "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "5.1.1",
-    "jsdom": "27.2.0",
-    "playwright": "1.57.0",
-    "playwright-core": "1.57.0",
-    "typescript": "5.9.3",
-    "vite-tsconfig-paths": "5.1.4",
-    "vitest": "4.0.14",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "jsdom": "^27.2.0",
+    "playwright": "^1.57.0",
+    "playwright-core": "^1.57.0",
+    "typescript": "^5.9.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^4.0.14",
     "wrangler": "^4.51.0"
   },
   "engines": {

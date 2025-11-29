@@ -28,6 +28,10 @@ import { Weather } from './collections/Weather';
 
 const Logo: PayloadComponent = '@/app/components/Logo';
 const Icon: PayloadComponent = '@/app/components/Icon';
+const DownloadFilesField: PayloadComponent =
+	'@/app/components/DownloadFilesField';
+const FormSubmissionView: PayloadComponent =
+	'@/app/components/FormSubmissionView';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 const cloudflareRemoteBindings = process.env.NODE_ENV === 'production';
@@ -118,7 +122,6 @@ export default buildConfig({
 		MarketArea,
 		Users,
 		Media,
-		FileUploads,
 		Blog,
 		News,
 		Sports,
@@ -126,6 +129,7 @@ export default buildConfig({
 		LocalEvents,
 		Churches,
 		Schools,
+		FileUploads,
 	],
 	editor: lexicalEditor(),
 	secret: process.env.PAYLOAD_SECRET || '',
@@ -171,6 +175,32 @@ export default buildConfig({
 					update: isAdmin,
 					delete: isAdmin,
 				},
+				admin: {
+					components: {
+						views: {
+							edit: {
+								default: {
+									Component: FormSubmissionView,
+								},
+							},
+						},
+					},
+				},
+				fields: ({ defaultFields }) => [
+					...defaultFields,
+					{
+						name: 'uploadedFiles',
+						type: 'join',
+						collection: 'file-uploads',
+						on: 'formSubmission',
+						admin: {
+							description: 'Files uploaded with this form submission',
+							components: {
+								Field: DownloadFilesField,
+							},
+						},
+					},
+				],
 			},
 		}),
 	],
