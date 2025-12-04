@@ -5,25 +5,19 @@
   "compatibility_date": "2025-10-11",
   "compatibility_flags": [
     "nodejs_compat",
-    "global_fetch_strictly_public",
+    "global_fetch_strictly_public"
   ],
   "assets": {
     "directory": ".open-next/assets",
-    "binding": "ASSETS",
+    "binding": "ASSETS"
   },
+  // Top-level bindings used for builds (local emulation, no remote)
   "d1_databases": [
     {
       "binding": "D1",
       "database_id": "265fbab9-d442-4f4b-89fa-a87d5fbac92f",
       "database_name": "tstfi-radio-cms-dev"
-    },
-  ],
-  "services": [
-    // The service should match the "name" of your worker
-    // {
-    //   "binding": "WORKER_SELF_REFERENCE",
-    //   "service": "my-app"
-    // },
+    }
   ],
   "r2_buckets": [
     {
@@ -33,12 +27,32 @@
     {
       "binding": "R2_UPLOADS",
       "bucket_name": "tsfti-radio-cms-uploads-dev"
-   }
+    }
   ],
 
-  // Development environment with remote bindings for local dev
-  // Use with: CLOUDFLARE_ENV=dev pnpm dev
   "env": {
+    // Production environment - deploy with: wrangler deploy --env production
+    "production": {
+      "d1_databases": [
+        {
+          "binding": "D1",
+          "database_id": "265fbab9-d442-4f4b-89fa-a87d5fbac92f",
+          "database_name": "tstfi-radio-cms-dev"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "R2_CMS_MEDIA",
+          "bucket_name": "tsfti-radio-cms-media-dev"
+        },
+        {
+          "binding": "R2_UPLOADS",
+          "bucket_name": "tsfti-radio-cms-uploads-dev"
+        }
+      ]
+    },
+    // Development environment with remote bindings for local dev
+    // Use with: CLOUDFLARE_ENV=dev pnpm dev
     "dev": {
       "d1_databases": [
         {
