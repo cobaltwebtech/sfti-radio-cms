@@ -44,12 +44,24 @@ export const Schools: CollectionConfig = {
 			hooks: {
 				beforeValidate: [
 					({ value, data }) => {
-						if (!value && data?.name) {
-							return data.name
+						// Helper function to slugify a string
+						const slugify = (str: string) =>
+							str
 								.toLowerCase()
+								.trim()
 								.replace(/[^a-z0-9]+/g, '-')
 								.replace(/^-|-$/g, '');
+
+						// Auto-generate slug from name if not provided
+						if (!value && data?.name) {
+							return slugify(data.name);
 						}
+
+						// Always slugify the value if provided (clean up spaces, special chars)
+						if (value) {
+							return slugify(value);
+						}
+
 						return value;
 					},
 				],

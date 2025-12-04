@@ -34,15 +34,26 @@ export const Blog: CollectionConfig = {
 			hooks: {
 				beforeValidate: [
 					({ value, data }) => {
+						// Helper function to slugify a string
+						const slugify = (str: string) =>
+							str
+								.toLowerCase()
+								.trim()
+								.replace(/[^a-z0-9]+/g, '-')
+								.replace(/^-|-$/g, '');
+
+						// Auto-generate slug from title and date if not provided
 						if (!value && data?.title && data?.publishDate) {
 							const date = new Date(data.publishDate);
 							const dateStr = date.toISOString().split('T')[0]; // YYYY-MM-DD
-							const titleSlug = data.title
-								.toLowerCase()
-								.replace(/[^a-z0-9]+/g, '-')
-								.replace(/^-|-$/g, '');
-							return `${dateStr}-${titleSlug}`;
+							return `${dateStr}-${slugify(data.title)}`;
 						}
+
+						// Always slugify the value if provided (clean up spaces, special chars)
+						if (value) {
+							return slugify(value);
+						}
+
 						return value;
 					},
 				],

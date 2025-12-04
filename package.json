@@ -1,6 +1,6 @@
 {
   "name": "tsfti-radio-cms",
-  "version": "0.2.0_alpha",
+  "version": "0.3.0_alpha",
   "description": "TSFTI Radio CMS using Payload",
   "license": "MIT",
   "type": "module",
