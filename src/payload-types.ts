@@ -73,7 +73,6 @@ export interface Config {
 		blog: Blog;
 		news: News;
 		sports: Sport;
-		weather: Weather;
 		'local-events': LocalEvent;
 		churches: Church;
 		schools: School;
@@ -97,7 +96,6 @@ export interface Config {
 		blog: BlogSelect<false> | BlogSelect<true>;
 		news: NewsSelect<false> | NewsSelect<true>;
 		sports: SportsSelect<false> | SportsSelect<true>;
-		weather: WeatherSelect<false> | WeatherSelect<true>;
 		'local-events': LocalEventsSelect<false> | LocalEventsSelect<true>;
 		churches: ChurchesSelect<false> | ChurchesSelect<true>;
 		schools: SchoolsSelect<false> | SchoolsSelect<true>;
@@ -372,47 +370,6 @@ export interface Sport {
 	_status?: ('draft' | 'published') | null;
 }
 /**
- * Weather updates and forecasts for market areas
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "weather".
- */
-export interface Weather {
-	id: number;
-	/**
-	 * Select the market area this weather update belongs to
-	 */
-	marketArea: number | MarketArea;
-	title: string;
-	/**
-	 * URL-friendly identifier (auto-generated with date, e.g., "2025-11-26-weather-title")
-	 */
-	slug: string;
-	/**
-	 * A short summary of the weather update
-	 */
-	description: string;
-	content: {
-		root: {
-			type: string;
-			children: {
-				type: any;
-				version: number;
-				[k: string]: unknown;
-			}[];
-			direction: ('ltr' | 'rtl') | null;
-			format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-			indent: number;
-			version: number;
-		};
-		[k: string]: unknown;
-	};
-	status?: ('draft' | 'published' | 'archived') | null;
-	updatedAt: string;
-	createdAt: string;
-	_status?: ('draft' | 'published') | null;
-}
-/**
  * Community events and happenings for market areas
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -426,9 +383,9 @@ export interface LocalEvent {
 	marketArea: number | MarketArea;
 	title: string;
 	/**
-	 * URL-friendly identifier for the event
+	 * URL-friendly identifier (auto-generated with date, e.g., "2025-12-02-event-title")
 	 */
-	slug?: string | null;
+	slug: string;
 	/**
 	 * A short summary of the event
 	 */
@@ -969,10 +926,6 @@ export interface PayloadLockedDocument {
 				value: number | Sport;
 		  } | null)
 		| ({
-				relationTo: 'weather';
-				value: number | Weather;
-		  } | null)
-		| ({
 				relationTo: 'local-events';
 				value: number | LocalEvent;
 		  } | null)
@@ -1139,21 +1092,6 @@ export interface SportsSelect<T extends boolean = true> {
 	description?: T;
 	featuredImage?: T;
 	publishDate?: T;
-	content?: T;
-	status?: T;
-	updatedAt?: T;
-	createdAt?: T;
-	_status?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "weather_select".
- */
-export interface WeatherSelect<T extends boolean = true> {
-	marketArea?: T;
-	title?: T;
-	slug?: T;
-	description?: T;
 	content?: T;
 	status?: T;
 	updatedAt?: T;

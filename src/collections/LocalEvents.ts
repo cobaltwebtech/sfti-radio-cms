@@ -36,18 +36,23 @@ export const LocalEvents: CollectionConfig = {
 		{
 			name: 'slug',
 			type: 'text',
+			required: true,
 			unique: true,
 			admin: {
-				description: 'URL-friendly identifier for the event',
+				description:
+					'URL-friendly identifier (auto-generated with date, e.g., "2025-12-02-event-title")',
 			},
 			hooks: {
 				beforeValidate: [
 					({ value, data }) => {
-						if (!value && data?.title) {
-							return data.title
+						if (!value && data?.title && data?.eventDate) {
+							const date = new Date(data.eventDate);
+							const dateStr = date.toISOString().split('T')[0]; // YYYY-MM-DD
+							const titleSlug = data.title
 								.toLowerCase()
 								.replace(/[^a-z0-9]+/g, '-')
 								.replace(/^-|-$/g, '');
+							return `${dateStr}-${titleSlug}`;
 						}
 						return value;
 					},

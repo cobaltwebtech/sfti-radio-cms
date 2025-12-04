@@ -1,6 +1,6 @@
 {
   "name": "tsfti-radio-cms",
-  "version": "0.1.0_alpha",
+  "version": "0.2.0_alpha",
   "description": "TSFTI Radio CMS using Payload",
   "license": "MIT",
   "type": "module",
@@ -9,7 +9,7 @@
     "deploy": "pnpm run deploy:database && pnpm run deploy:app",
     "deploy:app": "opennextjs-cloudflare build --env=$CLOUDFLARE_ENV && opennextjs-cloudflare deploy --env=$CLOUDFLARE_ENV",
     "deploy:database": "cross-env NODE_ENV=production payload migrate && wrangler d1 execute D1 --command 'PRAGMA optimize' --env=$CLOUDFLARE_ENV --remote",
-    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev --turbo",
     "devsafe": "rm -rf .next && rm -rf .open-next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
@@ -28,20 +28,20 @@
     "up:biome": "pnpm up @biomejs/biome@latest && pnpm biome migrate --write"
   },
   "dependencies": {
-    "@opennextjs/cloudflare": "^1.14.0",
-    "@payloadcms/db-d1-sqlite": "3.65.0",
-    "@payloadcms/next": "3.65.0",
-    "@payloadcms/plugin-form-builder": "^3.65.0",
-    "@payloadcms/richtext-lexical": "3.65.0",
-    "@payloadcms/storage-r2": "3.65.0",
-    "@payloadcms/ui": "3.65.0",
+    "@opennextjs/cloudflare": "^1.14.3",
+    "@payloadcms/db-d1-sqlite": "3.66.0",
+    "@payloadcms/next": "3.66.0",
+    "@payloadcms/plugin-form-builder": "^3.66.0",
+    "@payloadcms/richtext-lexical": "^3.66.0",
+    "@payloadcms/storage-r2": "3.66.0",
+    "@payloadcms/ui": "3.66.0",
     "cross-env": "^10.1.0",
     "dotenv": "^17.2.3",
     "graphql": "^16.12.0",
-    "next": "16.0.5",
-    "payload": "3.65.0",
-    "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "next": "16.0.7",
+    "payload": "3.66.0",
+    "react": "19.2.1",
+    "react-dom": "19.2.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.8",
@@ -56,8 +56,8 @@
     "playwright-core": "^1.57.0",
     "typescript": "^5.9.3",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^4.0.14",
-    "wrangler": "^4.51.0"
+    "vitest": "^4.0.15",
+    "wrangler": "^4.52.1"
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0",

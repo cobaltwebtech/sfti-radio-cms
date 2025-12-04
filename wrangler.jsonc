@@ -29,11 +29,13 @@
   "r2_buckets": [
     {
       "binding": "R2_CMS_MEDIA",
-      "bucket_name": "tsfti-radio-cms",
+      "bucket_name": "tsfti-radio-cms-media-dev",
+      "remote": true 
     },
     {
       "binding": "R2_UPLOADS",
-      "bucket_name": "tsfti-radio-file-uploads"    
+      "bucket_name": "tsfti-radio-cms-uploads-dev",
+      "remote": true 
    }
   ],
 

@@ -24,7 +24,6 @@ import { News } from './collections/News';
 import { Schools } from './collections/Schools';
 import { Sports } from './collections/Sports';
 import { Users } from './collections/Users';
-import { Weather } from './collections/Weather';
 
 const Logo: PayloadComponent = '@/app/components/Logo';
 const Icon: PayloadComponent = '@/app/components/Icon';
@@ -125,7 +124,6 @@ export default buildConfig({
 		Blog,
 		News,
 		Sports,
-		Weather,
 		LocalEvents,
 		Churches,
 		Schools,
