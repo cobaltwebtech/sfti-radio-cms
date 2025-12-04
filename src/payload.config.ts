@@ -46,13 +46,13 @@ const isPayloadCommand = process.argv.find((value) => value.match(/^(generate|mi
 // Not during build phase (CF Pages build or local build)
 const isWorkerRuntime = process.env.NODE_ENV === 'production' && !isBuildPhase;
 
-// For local dev, use remote bindings to access persistent D1/R2 data
-// For builds (local or CF Pages), disable remote bindings to avoid cloudflared requirement
-const useRemoteBindingsForDev = !isBuildPhase;
+// For local dev, use 'dev' environment which has remote bindings for persistent D1/R2 data
+// For builds (local or CF Pages), use default environment without remote bindings
+const useDevEnvironment = !isBuildPhase;
 
 const cloudflare =
 	isPayloadCommand || !isWorkerRuntime
-		? await getCloudflareContextFromWrangler({ remoteBindings: useRemoteBindingsForDev })
+		? await getCloudflareContextFromWrangler({ useDevEnvironment })
 		: await getCloudflareContext({ async: true });
 // Custom upload field block for form builder
 const UploadBlock: Block = {
@@ -220,14 +220,16 @@ export default buildConfig({
 });
 
 // Adapted from https://github.com/opennextjs/opennextjs-cloudflare/blob/d00b3a13e42e65aad76fba41774815726422cc39/packages/cloudflare/src/api/cloudflare-context.ts#L328C36-L328C46
-function getCloudflareContextFromWrangler(options?: { remoteBindings?: boolean }): Promise<CloudflareContext> {
+function getCloudflareContextFromWrangler(options?: { useDevEnvironment?: boolean }): Promise<CloudflareContext> {
+	// Use 'dev' environment for local development (has remote: true bindings)
+	// Use default environment for builds (no remote bindings)
+	const environment = options?.useDevEnvironment ? 'dev' : process.env.CLOUDFLARE_ENV;
+	
 	return import(
 		/* webpackIgnore: true */ `${'__wrangler'.replaceAll('_', '')}`
 	).then(({ getPlatformProxy }) =>
 		getPlatformProxy({
-			environment: process.env.CLOUDFLARE_ENV,
-			// Explicitly control remote bindings - false during build, can be true for local dev with remote DB
-			remoteBindings: options?.remoteBindings ?? false,
+			environment,
 		} satisfies GetPlatformProxyOptions),
 	);
 }

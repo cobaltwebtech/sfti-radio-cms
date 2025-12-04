@@ -15,8 +15,7 @@
     {
       "binding": "D1",
       "database_id": "265fbab9-d442-4f4b-89fa-a87d5fbac92f",
-      "database_name": "tstfi-radio-cms-dev",
-      "remote": true,
+      "database_name": "tstfi-radio-cms-dev"
     },
   ],
   "services": [
@@ -29,47 +28,38 @@
   "r2_buckets": [
     {
       "binding": "R2_CMS_MEDIA",
-      "bucket_name": "tsfti-radio-cms-media-dev",
-      "remote": true 
+      "bucket_name": "tsfti-radio-cms-media-dev"
     },
     {
       "binding": "R2_UPLOADS",
-      "bucket_name": "tsfti-radio-cms-uploads-dev",
-      "remote": true 
+      "bucket_name": "tsfti-radio-cms-uploads-dev"
    }
   ],
 
-  // Here's how to configure an additional environment
-  // It can be deployed with `CLOUDFLARE_ENV=staging pnpm run deploy`
-  // "env": {
-  //   "staging": {
-  //     "name": "my-app-staging",
-  //     "d1_databases": [
-  //       {
-  //         "binding": "D1",
-  //         "database_id": "DATABASE_ID",
-  //         "database_name": "my-app-staging",
-  //         "remote": true
-  //       }
-  //     ],
-  //     "services": [
-  //       // The service should match the "name" of your worker
-  //       // {
-  //       //   "binding": "WORKER_SELF_REFERENCE",
-  //       //   "service": "my-app-staging"
-  //       // },
-  //     ],
-  //     "r2_buckets": [
-  //       {
-  //         "binding": "R2",
-  //         "bucket_name": "my-app-staging"
-  //       }
-  //       // Create a R2 binding with the binding name "NEXT_INC_CACHE_R2_BUCKET"
-  //       // {
-  //       //   "binding": "NEXT_INC_CACHE_R2_BUCKET",
-  //       //   "bucket_name": "<BUCKET_NAME>",
-  //       // },
-  //     ]
-  //   }
-  // }
+  // Development environment with remote bindings for local dev
+  // Use with: CLOUDFLARE_ENV=dev pnpm dev
+  "env": {
+    "dev": {
+      "d1_databases": [
+        {
+          "binding": "D1",
+          "database_id": "265fbab9-d442-4f4b-89fa-a87d5fbac92f",
+          "database_name": "tstfi-radio-cms-dev",
+          "remote": true
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "R2_CMS_MEDIA",
+          "bucket_name": "tsfti-radio-cms-media-dev",
+          "remote": true
+        },
+        {
+          "binding": "R2_UPLOADS",
+          "bucket_name": "tsfti-radio-cms-uploads-dev",
+          "remote": true
+        }
+      ]
+    }
+  }
 }
