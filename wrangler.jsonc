@@ -31,8 +31,8 @@
   ],
 
   "env": {
-    // Production environment - deploy with: wrangler deploy --env production
-    "production": {
+    // Production environment - deploy with: wrangler deploy -e=prod
+    "prod": {
       "d1_databases": [
         {
           "binding": "D1",
@@ -52,7 +52,6 @@
       ]
     },
     // Development environment with remote bindings for local dev
-    // Use with: CLOUDFLARE_ENV=dev pnpm dev
     "dev": {
       "d1_databases": [
         {
