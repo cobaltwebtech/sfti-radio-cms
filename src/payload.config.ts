@@ -40,7 +40,9 @@ const dirname = path.dirname(filename);
 const isCFPagesBuild = process.env.CF_PAGES === '1';
 const isLocalBuild = process.argv.includes('build');
 const isBuildPhase = isCFPagesBuild || isLocalBuild;
-const isPayloadCommand = process.argv.find((value) => value.match(/^(generate|migrate):?/));
+const isPayloadCommand = process.argv.find((value) =>
+	value.match(/^(generate|migrate):?/),
+);
 
 // Use getCloudflareContext (async) only at actual runtime in production (Worker execution)
 // Not during build phase (CF Pages build or local build)
@@ -116,7 +118,7 @@ export default buildConfig({
 			baseDir: path.resolve(dirname),
 		},
 		meta: {
-			titleSuffix: ' - TSFTI Radio CMS',
+			titleSuffix: ' - SFTI Radio CMS',
 			icons: [
 				{
 					rel: 'icon',
@@ -220,11 +222,15 @@ export default buildConfig({
 });
 
 // Adapted from https://github.com/opennextjs/opennextjs-cloudflare/blob/d00b3a13e42e65aad76fba41774815726422cc39/packages/cloudflare/src/api/cloudflare-context.ts#L328C36-L328C46
-function getCloudflareContextFromWrangler(options?: { useDevEnvironment?: boolean }): Promise<CloudflareContext> {
+function getCloudflareContextFromWrangler(options?: {
+	useDevEnvironment?: boolean;
+}): Promise<CloudflareContext> {
 	// Use 'dev' environment for local development (has remote: true bindings)
 	// Use default environment for builds (no remote bindings)
-	const environment = options?.useDevEnvironment ? 'dev' : process.env.CLOUDFLARE_ENV;
-	
+	const environment = options?.useDevEnvironment
+		? 'dev'
+		: process.env.CLOUDFLARE_ENV;
+
 	return import(
 		/* webpackIgnore: true */ `${'__wrangler'.replaceAll('_', '')}`
 	).then(({ getPlatformProxy }) =>

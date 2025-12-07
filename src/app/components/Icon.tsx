@@ -5,7 +5,7 @@ const Icon = () => (
 			viewBox="0 0 512 512"
 			style={{ width: '100%' }}
 		>
-			<title>TSFTI Radio Icon</title>
+			<title>SFTI Radio Icon</title>
 			<g>
 				<path
 					d="M511 256C505.3 596 6.7 596 1 256c5.7-340 504.3-340 510 0"

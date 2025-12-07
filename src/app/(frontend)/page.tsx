@@ -13,7 +13,7 @@ export default async function HomePage() {
 	return (
 		<div className="home">
 			<div className="content">
-				{!user && <h1>TSFTI Radio CMS.</h1>}
+				{!user && <h1>SFTI Radio CMS</h1>}
 				{user && <h1>Welcome back, {user.email}</h1>}
 				<div className="links">
 					<a className="admin" href={payloadConfig.routes.admin}>

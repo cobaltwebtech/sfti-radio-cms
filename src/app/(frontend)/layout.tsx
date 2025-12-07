@@ -2,8 +2,8 @@ import type React from 'react';
 import './styles.css';
 
 export const metadata = {
-	description: 'Payload CMS for TSFTI Radio',
-	title: 'TSFTI Radio CMS',
+	description: 'Payload CMS for SFTI Radio',
+	title: 'SFTI Radio CMS',
 };
 
 export default async function RootLayout(props: { children: React.ReactNode }) {

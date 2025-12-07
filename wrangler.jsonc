@@ -1,8 +1,8 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "main": ".open-next/worker.js",
-  "name": "tsfti-radio-cms",
-  "compatibility_date": "2025-10-11",
+  "name": "sfti-radio-cms",
+  "compatibility_date": "2025-11-17",
   "compatibility_flags": [
     "nodejs_compat",
     "global_fetch_strictly_public"
@@ -14,7 +14,7 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
-  // Top-level bindings used for builds (local emulation, no remote)
+  // Top-level bindings used for production builds
   "d1_databases": [
     {
       "binding": "D1",
@@ -34,8 +34,8 @@
   ],
 
   "env": {
-    // Production environment - deploy with: wrangler deploy -e=prod
-    "prod": {
+    // Development environment bindings used to access resources seperate from production
+    "dev": {
       "d1_databases": [
         {
           "binding": "D1",
@@ -51,29 +51,6 @@
         {
           "binding": "R2_UPLOADS",
           "bucket_name": "tsfti-radio-cms-uploads-dev"
-        }
-      ]
-    },
-    // Development environment with remote bindings for local dev
-    "dev": {
-      "d1_databases": [
-        {
-          "binding": "D1",
-          "database_id": "265fbab9-d442-4f4b-89fa-a87d5fbac92f",
-          "database_name": "tstfi-radio-cms-dev",
-          "remote": true
-        }
-      ],
-      "r2_buckets": [
-        {
-          "binding": "R2_CMS_MEDIA",
-          "bucket_name": "tsfti-radio-cms-media-dev",
-          "remote": true
-        },
-        {
-          "binding": "R2_UPLOADS",
-          "bucket_name": "tsfti-radio-cms-uploads-dev",
-          "remote": true
         }
       ]
     }
