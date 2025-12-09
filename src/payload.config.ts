@@ -7,6 +7,7 @@ import {
 	getCloudflareContext,
 } from '@opennextjs/cloudflare';
 import { sqliteD1Adapter } from '@payloadcms/db-d1-sqlite';
+import { resendAdapter } from '@payloadcms/email-resend';
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
 import { searchPlugin } from '@payloadcms/plugin-search';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
@@ -44,18 +45,22 @@ const isBuildPhase = isCFPagesBuild || isLocalBuild;
 const isPayloadCommand = process.argv.find((value) =>
 	value.match(/^(generate|migrate):?/),
 );
+const isProduction = process.env.NODE_ENV === 'production';
 
 // Use getCloudflareContext (async) only at actual runtime in production (Worker execution)
 // Not during build phase (CF Pages build or local build)
-const isWorkerRuntime = process.env.NODE_ENV === 'production' && !isBuildPhase;
+const isWorkerRuntime = isProduction && !isBuildPhase;
 
 // For local dev, use 'dev' environment which has remote bindings for persistent D1/R2 data
 // For builds (local or CF Pages), use default environment without remote bindings
-const useDevEnvironment = !isBuildPhase;
+const useDevEnvironment = !isBuildPhase && !isProduction;
 
 const cloudflare =
 	isPayloadCommand || !isWorkerRuntime
-		? await getCloudflareContextFromWrangler({ useDevEnvironment })
+		? await getCloudflareContextFromWrangler({
+				useDevEnvironment,
+				useRemoteBindings: isProduction,
+			})
 		: await getCloudflareContext({ async: true });
 // Custom upload field block for form builder
 const UploadBlock: Block = {
@@ -149,6 +154,11 @@ export default buildConfig({
 	],
 	editor: lexicalEditor(),
 	secret: process.env.PAYLOAD_SECRET || '',
+	email: resendAdapter({
+		apiKey: process.env.RESEND_API_KEY || '',
+		defaultFromAddress: 'notify@contact.cobaltweb.tech',
+		defaultFromName: 'SFTI Radio CMS',
+	}),
 	typescript: {
 		outputFile: path.resolve(dirname, 'payload-types.ts'),
 	},
@@ -190,6 +200,58 @@ export default buildConfig({
 					create: publicReadAccess, // Public can submit forms
 					update: isAdmin,
 					delete: isAdmin,
+				},
+				hooks: {
+					afterChange: [
+						async ({ doc, operation, req }) => {
+							// Only send email on create (new submission)
+							if (operation === 'create') {
+								// Get the form details
+								const form = await req.payload.findByID({
+									collection: 'forms',
+									id: doc.form,
+								});
+
+								// Get all admin users to notify
+								const adminUsers = await req.payload.find({
+									collection: 'users',
+									where: {
+										role: {
+											equals: 'admin',
+										},
+									},
+								});
+
+								// Format submission data for email
+								const submissionData = Object.entries(doc.submissionData || {})
+									.map(([key, value]) => `${key}: ${value}`)
+									.join('\n');
+
+								// Send email to each admin
+								for (const admin of adminUsers.docs) {
+									try {
+										await req.payload.sendEmail({
+											to: admin.email,
+											subject: `New Form Submission: ${form.title}`,
+											html: `
+												<h2>New Form Submission</h2>
+												<p><strong>Form:</strong> ${form.title}</p>
+												<p><strong>Submitted:</strong> ${new Date(doc.createdAt).toLocaleString()}</p>
+												<h3>Submission Details:</h3>
+												<pre>${submissionData}</pre>
+												<p><a href="https://www.sfti-radio.net/admin/collections/form-submissions/${doc.id}">View in Admin Panel</a></p>
+											`,
+										});
+									} catch (error) {
+										console.error(
+											`Failed to send email to ${admin.email}:`,
+											error,
+										);
+									}
+								}
+							}
+						},
+					],
 				},
 				admin: {
 					components: {
@@ -258,9 +320,10 @@ export default buildConfig({
 // Adapted from https://github.com/opennextjs/opennextjs-cloudflare/blob/d00b3a13e42e65aad76fba41774815726422cc39/packages/cloudflare/src/api/cloudflare-context.ts#L328C36-L328C46
 function getCloudflareContextFromWrangler(options?: {
 	useDevEnvironment?: boolean;
+	useRemoteBindings?: boolean;
 }): Promise<CloudflareContext> {
-	// Use 'dev' environment for local development (has remote: true bindings)
-	// Use default environment for builds (no remote bindings)
+	// Use 'dev' environment for local development
+	// Use CLOUDFLARE_ENV (e.g., 'prod') for production migrations
 	const environment = options?.useDevEnvironment
 		? 'dev'
 		: process.env.CLOUDFLARE_ENV;
@@ -270,6 +333,8 @@ function getCloudflareContextFromWrangler(options?: {
 	).then(({ getPlatformProxy }) =>
 		getPlatformProxy({
 			environment,
+			// Use remote bindings to connect to actual Cloudflare D1/R2 instead of local
+			remoteBindings: options?.useRemoteBindings,
 		} satisfies GetPlatformProxyOptions),
 	);
 }

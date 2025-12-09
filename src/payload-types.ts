@@ -189,7 +189,7 @@ export interface MarketArea {
 	/**
 	 * Live 365 Stream IDs associated with this market area
 	 */
-	streamId?:
+	streamIds?:
 		| {
 				/**
 				 * Display name for this stream (e.g. "Main Stream", "Country Channel")
@@ -198,7 +198,8 @@ export interface MarketArea {
 				/**
 				 * Live 365 Stream ID
 				 */
-				id: string;
+				streamId: string;
+				id?: string | null;
 		  }[]
 		| null;
 	/**
@@ -1085,10 +1086,11 @@ export interface MarketAreasSelect<T extends boolean = true> {
 				name?: T;
 				id?: T;
 		  };
-	streamId?:
+	streamIds?:
 		| T
 		| {
 				title?: T;
+				streamId?: T;
 				id?: T;
 		  };
 	customStreamUrl?:

@@ -96,7 +96,7 @@ export const MarketArea: CollectionConfig = {
 			],
 		},
 		{
-			name: 'streamId',
+			name: 'streamIds',
 			type: 'array',
 			label: 'Stream IDs',
 			admin: {
@@ -113,7 +113,7 @@ export const MarketArea: CollectionConfig = {
 					},
 				},
 				{
-					name: 'id',
+					name: 'streamId',
 					type: 'text',
 					required: true,
 					admin: {

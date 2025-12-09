@@ -14,26 +14,45 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
-  // Top-level bindings used for production builds
+  // Top-level bindings for type generation (these get overridden by env-specific bindings)
   "d1_databases": [
     {
       "binding": "D1",
-      "database_id": "265fbab9-d442-4f4b-89fa-a87d5fbac92f",
-      "database_name": "tstfi-radio-cms-dev"
+      "database_id": "b02b9c00-b3eb-4441-b54d-d6167d39b864",
+      "database_name": "sfti-radio-cms-prod"
     }
   ],
   "r2_buckets": [
     {
       "binding": "R2_CMS_MEDIA",
-      "bucket_name": "tsfti-radio-cms-media-dev"
+      "bucket_name": "sfti-radio-cms-media-prod"
     },
     {
       "binding": "R2_UPLOADS",
-      "bucket_name": "tsfti-radio-cms-uploads-dev"
+      "bucket_name": "sfti-radio-cms-uploads-prod"
     }
   ],
-
   "env": {
+    "prod": {
+      "d1_databases": [
+        {
+          "binding": "D1",
+          "database_id": "b02b9c00-b3eb-4441-b54d-d6167d39b864",
+          "database_name": "sfti-radio-cms-prod",
+          "remote": true
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "R2_CMS_MEDIA",
+          "bucket_name": "sfti-radio-cms-media-prod"
+        },
+        {
+          "binding": "R2_UPLOADS",
+          "bucket_name": "sfti-radio-cms-uploads-prod"
+        }
+      ]
+    },
     // Development environment bindings used to access resources seperate from production
     "dev": {
       "d1_databases": [
