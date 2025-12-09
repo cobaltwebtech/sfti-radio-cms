@@ -95,5 +95,59 @@ export const MarketArea: CollectionConfig = {
 				},
 			],
 		},
+		{
+			name: 'streamId',
+			type: 'array',
+			label: 'Stream IDs',
+			admin: {
+				description: 'Live 365 Stream IDs associated with this market area',
+			},
+			fields: [
+				{
+					name: 'title',
+					type: 'text',
+					required: true,
+					admin: {
+						description:
+							'Display name for this stream (e.g. "Main Stream", "Country Channel")',
+					},
+				},
+				{
+					name: 'id',
+					type: 'text',
+					required: true,
+					admin: {
+						description: 'Live 365 Stream ID',
+					},
+				},
+			],
+		},
+		{
+			name: 'customStreamUrl',
+			type: 'array',
+			label: 'Custom Stream URLs',
+			admin: {
+				description: 'Custom stream URL associated with this market area',
+			},
+			fields: [
+				{
+					name: 'title',
+					type: 'text',
+					required: true,
+					admin: {
+						description:
+							'Display name for this stream (e.g. "Main Stream", "Country Channel")',
+					},
+				},
+				{
+					name: 'url',
+					type: 'text',
+					required: true,
+					admin: {
+						description: 'Custom Stream URL',
+					},
+				},
+			],
+		},
 	],
 };

@@ -23,6 +23,8 @@ import { BoldFeatureClient as BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864
 import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client';
 import { default as default_5782e6df4a42b0b840a26e895c121955 } from '@/app/components/DownloadFilesField';
 import { default as default_070e87c24f95ede2cee8dbaa30bbfcdc } from '@/app/components/FormSubmissionView';
+import { LinkToDoc as LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client';
+import { ReindexButton as ReindexButton_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client';
 import { default as default_c6cb76509a7b8c948c6414aa15e363ec } from '@/app/components/Icon';
 import { default as default_92400324868dee237849e7c07305ad66 } from '@/app/components/Logo';
 
@@ -77,6 +79,10 @@ export const importMap = {
 		default_5782e6df4a42b0b840a26e895c121955,
 	'@/app/components/FormSubmissionView#default':
 		default_070e87c24f95ede2cee8dbaa30bbfcdc,
+	'@payloadcms/plugin-search/client#LinkToDoc':
+		LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634,
+	'@payloadcms/plugin-search/client#ReindexButton':
+		ReindexButton_aead06e4cbf6b2620c5c51c9ab283634,
 	'@/app/components/Icon#default': default_c6cb76509a7b8c948c6414aa15e363ec,
 	'@/app/components/Logo#default': default_92400324868dee237849e7c07305ad66,
 };

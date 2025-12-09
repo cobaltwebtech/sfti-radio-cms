@@ -8,6 +8,7 @@ import {
 } from '@opennextjs/cloudflare';
 import { sqliteD1Adapter } from '@payloadcms/db-d1-sqlite';
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
+import { searchPlugin } from '@payloadcms/plugin-search';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { r2Storage } from '@payloadcms/storage-r2';
 import type { Block, PayloadComponent } from 'payload';
@@ -216,6 +217,39 @@ export default buildConfig({
 						},
 					},
 				],
+			},
+		}),
+		searchPlugin({
+			collections: [
+				'blog',
+				'churches',
+				'local-events',
+				'market-areas',
+				'news',
+				'schools',
+				'sports',
+			],
+			beforeSync: ({ originalDoc, searchDoc }) => {
+				// Collections that use 'name' instead of 'title'
+				const collectionsWithNameField = [
+					'churches',
+					'schools',
+					'market-areas',
+				];
+				const docRelation = searchDoc.doc?.relationTo;
+
+				if (
+					typeof docRelation === 'string' &&
+					collectionsWithNameField.includes(docRelation) &&
+					originalDoc?.name
+				) {
+					return {
+						...searchDoc,
+						title: originalDoc.name,
+					};
+				}
+
+				return searchDoc;
 			},
 		}),
 	],

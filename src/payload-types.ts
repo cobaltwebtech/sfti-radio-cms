@@ -13,132 +13,142 @@
  * via the `definition` "supportedTimezones".
  */
 export type SupportedTimezones =
-  | 'Pacific/Midway'
-  | 'Pacific/Niue'
-  | 'Pacific/Honolulu'
-  | 'Pacific/Rarotonga'
-  | 'America/Anchorage'
-  | 'Pacific/Gambier'
-  | 'America/Los_Angeles'
-  | 'America/Tijuana'
-  | 'America/Denver'
-  | 'America/Phoenix'
-  | 'America/Chicago'
-  | 'America/Guatemala'
-  | 'America/New_York'
-  | 'America/Bogota'
-  | 'America/Caracas'
-  | 'America/Santiago'
-  | 'America/Buenos_Aires'
-  | 'America/Sao_Paulo'
-  | 'Atlantic/South_Georgia'
-  | 'Atlantic/Azores'
-  | 'Atlantic/Cape_Verde'
-  | 'Europe/London'
-  | 'Europe/Berlin'
-  | 'Africa/Lagos'
-  | 'Europe/Athens'
-  | 'Africa/Cairo'
-  | 'Europe/Moscow'
-  | 'Asia/Riyadh'
-  | 'Asia/Dubai'
-  | 'Asia/Baku'
-  | 'Asia/Karachi'
-  | 'Asia/Tashkent'
-  | 'Asia/Calcutta'
-  | 'Asia/Dhaka'
-  | 'Asia/Almaty'
-  | 'Asia/Jakarta'
-  | 'Asia/Bangkok'
-  | 'Asia/Shanghai'
-  | 'Asia/Singapore'
-  | 'Asia/Tokyo'
-  | 'Asia/Seoul'
-  | 'Australia/Brisbane'
-  | 'Australia/Sydney'
-  | 'Pacific/Guam'
-  | 'Pacific/Noumea'
-  | 'Pacific/Auckland'
-  | 'Pacific/Fiji';
+	| 'Pacific/Midway'
+	| 'Pacific/Niue'
+	| 'Pacific/Honolulu'
+	| 'Pacific/Rarotonga'
+	| 'America/Anchorage'
+	| 'Pacific/Gambier'
+	| 'America/Los_Angeles'
+	| 'America/Tijuana'
+	| 'America/Denver'
+	| 'America/Phoenix'
+	| 'America/Chicago'
+	| 'America/Guatemala'
+	| 'America/New_York'
+	| 'America/Bogota'
+	| 'America/Caracas'
+	| 'America/Santiago'
+	| 'America/Buenos_Aires'
+	| 'America/Sao_Paulo'
+	| 'Atlantic/South_Georgia'
+	| 'Atlantic/Azores'
+	| 'Atlantic/Cape_Verde'
+	| 'Europe/London'
+	| 'Europe/Berlin'
+	| 'Africa/Lagos'
+	| 'Europe/Athens'
+	| 'Africa/Cairo'
+	| 'Europe/Moscow'
+	| 'Asia/Riyadh'
+	| 'Asia/Dubai'
+	| 'Asia/Baku'
+	| 'Asia/Karachi'
+	| 'Asia/Tashkent'
+	| 'Asia/Calcutta'
+	| 'Asia/Dhaka'
+	| 'Asia/Almaty'
+	| 'Asia/Jakarta'
+	| 'Asia/Bangkok'
+	| 'Asia/Shanghai'
+	| 'Asia/Singapore'
+	| 'Asia/Tokyo'
+	| 'Asia/Seoul'
+	| 'Australia/Brisbane'
+	| 'Australia/Sydney'
+	| 'Pacific/Guam'
+	| 'Pacific/Noumea'
+	| 'Pacific/Auckland'
+	| 'Pacific/Fiji';
 
 export interface Config {
-  auth: {
-    users: UserAuthOperations;
-  };
-  blocks: {};
-  collections: {
-    'market-areas': MarketArea;
-    users: User;
-    media: Media;
-    blog: Blog;
-    news: News;
-    sports: Sport;
-    'local-events': LocalEvent;
-    churches: Church;
-    schools: School;
-    'file-uploads': FileUpload;
-    forms: Form;
-    'form-submissions': FormSubmission;
-    'payload-kv': PayloadKv;
-    'payload-locked-documents': PayloadLockedDocument;
-    'payload-preferences': PayloadPreference;
-    'payload-migrations': PayloadMigration;
-  };
-  collectionsJoins: {
-    'form-submissions': {
-      uploadedFiles: 'file-uploads';
-    };
-  };
-  collectionsSelect: {
-    'market-areas': MarketAreasSelect<false> | MarketAreasSelect<true>;
-    users: UsersSelect<false> | UsersSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
-    blog: BlogSelect<false> | BlogSelect<true>;
-    news: NewsSelect<false> | NewsSelect<true>;
-    sports: SportsSelect<false> | SportsSelect<true>;
-    'local-events': LocalEventsSelect<false> | LocalEventsSelect<true>;
-    churches: ChurchesSelect<false> | ChurchesSelect<true>;
-    schools: SchoolsSelect<false> | SchoolsSelect<true>;
-    'file-uploads': FileUploadsSelect<false> | FileUploadsSelect<true>;
-    forms: FormsSelect<false> | FormsSelect<true>;
-    'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
-    'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
-    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
-    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
-    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
-  };
-  db: {
-    defaultIDType: number;
-  };
-  fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
-  locale: null;
-  user: User & {
-    collection: 'users';
-  };
-  jobs: {
-    tasks: unknown;
-    workflows: unknown;
-  };
+	auth: {
+		users: UserAuthOperations;
+	};
+	blocks: {};
+	collections: {
+		'market-areas': MarketArea;
+		users: User;
+		media: Media;
+		blog: Blog;
+		news: News;
+		sports: Sport;
+		'local-events': LocalEvent;
+		churches: Church;
+		schools: School;
+		'file-uploads': FileUpload;
+		forms: Form;
+		'form-submissions': FormSubmission;
+		search: Search;
+		'payload-kv': PayloadKv;
+		'payload-locked-documents': PayloadLockedDocument;
+		'payload-preferences': PayloadPreference;
+		'payload-migrations': PayloadMigration;
+	};
+	collectionsJoins: {
+		'form-submissions': {
+			uploadedFiles: 'file-uploads';
+		};
+	};
+	collectionsSelect: {
+		'market-areas': MarketAreasSelect<false> | MarketAreasSelect<true>;
+		users: UsersSelect<false> | UsersSelect<true>;
+		media: MediaSelect<false> | MediaSelect<true>;
+		blog: BlogSelect<false> | BlogSelect<true>;
+		news: NewsSelect<false> | NewsSelect<true>;
+		sports: SportsSelect<false> | SportsSelect<true>;
+		'local-events': LocalEventsSelect<false> | LocalEventsSelect<true>;
+		churches: ChurchesSelect<false> | ChurchesSelect<true>;
+		schools: SchoolsSelect<false> | SchoolsSelect<true>;
+		'file-uploads': FileUploadsSelect<false> | FileUploadsSelect<true>;
+		forms: FormsSelect<false> | FormsSelect<true>;
+		'form-submissions':
+			| FormSubmissionsSelect<false>
+			| FormSubmissionsSelect<true>;
+		search: SearchSelect<false> | SearchSelect<true>;
+		'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
+		'payload-locked-documents':
+			| PayloadLockedDocumentsSelect<false>
+			| PayloadLockedDocumentsSelect<true>;
+		'payload-preferences':
+			| PayloadPreferencesSelect<false>
+			| PayloadPreferencesSelect<true>;
+		'payload-migrations':
+			| PayloadMigrationsSelect<false>
+			| PayloadMigrationsSelect<true>;
+	};
+	db: {
+		defaultIDType: number;
+	};
+	fallbackLocale: null;
+	globals: {};
+	globalsSelect: {};
+	locale: null;
+	user: User & {
+		collection: 'users';
+	};
+	jobs: {
+		tasks: unknown;
+		workflows: unknown;
+	};
 }
 export interface UserAuthOperations {
-  forgotPassword: {
-    email: string;
-    password: string;
-  };
-  login: {
-    email: string;
-    password: string;
-  };
-  registerFirstUser: {
-    email: string;
-    password: string;
-  };
-  unlock: {
-    email: string;
-    password: string;
-  };
+	forgotPassword: {
+		email: string;
+		password: string;
+	};
+	login: {
+		email: string;
+		password: string;
+	};
+	registerFirstUser: {
+		email: string;
+		password: string;
+	};
+	unlock: {
+		email: string;
+		password: string;
+	};
 }
 /**
  * Geographic areas for organizing local content
@@ -147,37 +157,68 @@ export interface UserAuthOperations {
  * via the `definition` "market-areas".
  */
 export interface MarketArea {
-  id: number;
-  /**
-   * Market Area name (e.g. Dublin, Erath County, or 76446)
-   */
-  name: string;
-  /**
-   * URL-friendly identifier. Leave this blank when creating a new market area since it will be auto-generated from the Name.
-   */
-  slug: string;
-  /**
-   * Optional description of the market area
-   */
-  description?: string | null;
-  /**
-   * Whether this market area is active and visible on the front end
-   */
-  active?: boolean | null;
-  /**
-   * Add nearby towns, suburbs, or communities that are part of this market area. These will be used for search functionality.
-   */
-  surroundingAreas?:
-    | {
-        /**
-         * Name of the surrounding town, suburb, or community
-         */
-        name: string;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
+	id: number;
+	/**
+	 * Market Area name (e.g. Dublin, Erath County, or 76446)
+	 */
+	name: string;
+	/**
+	 * URL-friendly identifier. Leave this blank when creating a new market area since it will be auto-generated from the Name.
+	 */
+	slug: string;
+	/**
+	 * Optional description of the market area
+	 */
+	description?: string | null;
+	/**
+	 * Whether this market area is active and visible on the front end
+	 */
+	active?: boolean | null;
+	/**
+	 * Add nearby towns, suburbs, or communities that are part of this market area. These will be used for search functionality.
+	 */
+	surroundingAreas?:
+		| {
+				/**
+				 * Name of the surrounding town, suburb, or community
+				 */
+				name: string;
+				id?: string | null;
+		  }[]
+		| null;
+	/**
+	 * Live 365 Stream IDs associated with this market area
+	 */
+	streamId?:
+		| {
+				/**
+				 * Display name for this stream (e.g. "Main Stream", "Country Channel")
+				 */
+				title: string;
+				/**
+				 * Live 365 Stream ID
+				 */
+				id: string;
+		  }[]
+		| null;
+	/**
+	 * Custom stream URL associated with this market area
+	 */
+	customStreamUrl?:
+		| {
+				/**
+				 * Display name for this stream (e.g. "Main Stream", "Country Channel")
+				 */
+				title: string;
+				/**
+				 * Custom Stream URL
+				 */
+				url: string;
+				id?: string | null;
+		  }[]
+		| null;
+	updatedAt: string;
+	createdAt: string;
 }
 /**
  * CMS users with role-based access control
@@ -186,88 +227,88 @@ export interface MarketArea {
  * via the `definition` "users".
  */
 export interface User {
-  id: number;
-  /**
-   * User role determines access permissions in the CMS
-   */
-  role: 'admin' | 'staff';
-  /**
-   * Display name for the user
-   */
-  name?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
+	id: number;
+	/**
+	 * User role determines access permissions in the CMS
+	 */
+	role: 'admin' | 'staff';
+	/**
+	 * Display name for the user
+	 */
+	name?: string | null;
+	updatedAt: string;
+	createdAt: string;
+	email: string;
+	resetPasswordToken?: string | null;
+	resetPasswordExpiration?: string | null;
+	salt?: string | null;
+	hash?: string | null;
+	loginAttempts?: number | null;
+	lockUntil?: string | null;
+	sessions?:
+		| {
+				id: string;
+				createdAt?: string | null;
+				expiresAt: string;
+		  }[]
+		| null;
+	password?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
+	id: number;
+	alt: string;
+	updatedAt: string;
+	createdAt: string;
+	url?: string | null;
+	thumbnailURL?: string | null;
+	filename?: string | null;
+	mimeType?: string | null;
+	filesize?: number | null;
+	width?: number | null;
+	height?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "blog".
  */
 export interface Blog {
-  id: number;
-  title: string;
-  /**
-   * URL-friendly identifier (auto-generated with date, e.g., "2025-11-26-blog-title")
-   */
-  slug: string;
-  /**
-   * A short description of the blog post
-   */
-  description: string;
-  /**
-   * Author of the blog post (automatically set to the creator)
-   */
-  author: number | User;
-  publishDate: string;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
+	id: number;
+	title: string;
+	/**
+	 * URL-friendly identifier (auto-generated with date, e.g., "2025-11-26-blog-title")
+	 */
+	slug: string;
+	/**
+	 * A short description of the blog post
+	 */
+	description: string;
+	/**
+	 * Author of the blog post (automatically set to the creator)
+	 */
+	author: number | User;
+	publishDate: string;
+	content: {
+		root: {
+			type: string;
+			children: {
+				type: any;
+				version: number;
+				[k: string]: unknown;
+			}[];
+			direction: ('ltr' | 'rtl') | null;
+			format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+			indent: number;
+			version: number;
+		};
+		[k: string]: unknown;
+	};
+	updatedAt: string;
+	createdAt: string;
+	_status?: ('draft' | 'published') | null;
 }
 /**
  * Local news articles for market areas
@@ -276,44 +317,44 @@ export interface Blog {
  * via the `definition` "news".
  */
 export interface News {
-  id: number;
-  /**
-   * Select the market area this news belongs to
-   */
-  marketArea: number | MarketArea;
-  title: string;
-  /**
-   * URL-friendly identifier (auto-generated with date, e.g., "2025-11-26-article-title")
-   */
-  slug: string;
-  /**
-   * A short summary of the news article
-   */
-  description: string;
-  /**
-   * Featured image for the news article
-   */
-  featuredImage?: (number | null) | Media;
-  publishDate: string;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  status?: ('draft' | 'published' | 'archived') | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
+	id: number;
+	/**
+	 * Select the market area this news belongs to
+	 */
+	marketArea: number | MarketArea;
+	title: string;
+	/**
+	 * URL-friendly identifier (auto-generated with date, e.g., "2025-11-26-article-title")
+	 */
+	slug: string;
+	/**
+	 * A short summary of the news article
+	 */
+	description: string;
+	/**
+	 * Featured image for the news article
+	 */
+	featuredImage?: (number | null) | Media;
+	publishDate: string;
+	content: {
+		root: {
+			type: string;
+			children: {
+				type: any;
+				version: number;
+				[k: string]: unknown;
+			}[];
+			direction: ('ltr' | 'rtl') | null;
+			format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+			indent: number;
+			version: number;
+		};
+		[k: string]: unknown;
+	};
+	status?: ('draft' | 'published' | 'archived') | null;
+	updatedAt: string;
+	createdAt: string;
+	_status?: ('draft' | 'published') | null;
 }
 /**
  * Local sports news and coverage for market areas
@@ -322,44 +363,44 @@ export interface News {
  * via the `definition` "sports".
  */
 export interface Sport {
-  id: number;
-  /**
-   * Select the market area this sports article belongs to
-   */
-  marketArea: number | MarketArea;
-  title: string;
-  /**
-   * URL-friendly identifier (auto-generated with date, e.g., "2025-11-26-article-title")
-   */
-  slug: string;
-  /**
-   * A short summary of the sports article
-   */
-  description: string;
-  /**
-   * Featured image for the sports article
-   */
-  featuredImage?: (number | null) | Media;
-  publishDate: string;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  status?: ('draft' | 'published' | 'archived') | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
+	id: number;
+	/**
+	 * Select the market area this sports article belongs to
+	 */
+	marketArea: number | MarketArea;
+	title: string;
+	/**
+	 * URL-friendly identifier (auto-generated with date, e.g., "2025-11-26-article-title")
+	 */
+	slug: string;
+	/**
+	 * A short summary of the sports article
+	 */
+	description: string;
+	/**
+	 * Featured image for the sports article
+	 */
+	featuredImage?: (number | null) | Media;
+	publishDate: string;
+	content: {
+		root: {
+			type: string;
+			children: {
+				type: any;
+				version: number;
+				[k: string]: unknown;
+			}[];
+			direction: ('ltr' | 'rtl') | null;
+			format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+			indent: number;
+			version: number;
+		};
+		[k: string]: unknown;
+	};
+	status?: ('draft' | 'published' | 'archived') | null;
+	updatedAt: string;
+	createdAt: string;
+	_status?: ('draft' | 'published') | null;
 }
 /**
  * Community events and happenings for market areas
@@ -368,65 +409,75 @@ export interface Sport {
  * via the `definition` "local-events".
  */
 export interface LocalEvent {
-  id: number;
-  /**
-   * Select the market area this event belongs to
-   */
-  marketArea: number | MarketArea;
-  title: string;
-  /**
-   * URL-friendly identifier (auto-generated with date, e.g., "2025-12-02-event-title")
-   */
-  slug: string;
-  /**
-   * A short summary of the event
-   */
-  description: string;
-  /**
-   * Featured image or flyer for the event
-   */
-  featuredImage?: (number | null) | Media;
-  /**
-   * Date and time of the event
-   */
-  eventDate: string;
-  /**
-   * End date and time (for multi-day events)
-   */
-  eventEndDate?: string | null;
-  location?: {
-    /**
-     * Name of the venue
-     */
-    venueName?: string | null;
-    /**
-     * Full address of the event
-     */
-    address?: string | null;
-  };
-  /**
-   * Type of event
-   */
-  eventType?: ('community' | 'festival' | 'concert' | 'fundraiser' | 'market' | 'workshop' | 'other') | null;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  status?: ('draft' | 'published' | 'cancelled' | 'archived') | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
+	id: number;
+	/**
+	 * Select the market area this event belongs to
+	 */
+	marketArea: number | MarketArea;
+	title: string;
+	/**
+	 * URL-friendly identifier (auto-generated with date, e.g., "2025-12-02-event-title")
+	 */
+	slug: string;
+	/**
+	 * A short summary of the event
+	 */
+	description: string;
+	/**
+	 * Featured image or flyer for the event
+	 */
+	featuredImage?: (number | null) | Media;
+	/**
+	 * Date and time of the event
+	 */
+	eventDate: string;
+	/**
+	 * End date and time (for multi-day events)
+	 */
+	eventEndDate?: string | null;
+	location?: {
+		/**
+		 * Name of the venue
+		 */
+		venueName?: string | null;
+		/**
+		 * Full address of the event
+		 */
+		address?: string | null;
+	};
+	/**
+	 * Type of event
+	 */
+	eventType?:
+		| (
+				| 'community'
+				| 'festival'
+				| 'concert'
+				| 'fundraiser'
+				| 'market'
+				| 'workshop'
+				| 'other'
+		  )
+		| null;
+	content: {
+		root: {
+			type: string;
+			children: {
+				type: any;
+				version: number;
+				[k: string]: unknown;
+			}[];
+			direction: ('ltr' | 'rtl') | null;
+			format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+			indent: number;
+			version: number;
+		};
+		[k: string]: unknown;
+	};
+	status?: ('draft' | 'published' | 'cancelled' | 'archived') | null;
+	updatedAt: string;
+	createdAt: string;
+	_status?: ('draft' | 'published') | null;
 }
 /**
  * Local churches and places of worship for market areas
@@ -435,83 +486,93 @@ export interface LocalEvent {
  * via the `definition` "churches".
  */
 export interface Church {
-  id: number;
-  /**
-   * Select the market area this church belongs to
-   */
-  marketArea: number | MarketArea;
-  name: string;
-  /**
-   * URL-friendly identifier for the church
-   */
-  slug: string;
-  /**
-   * Denomination or affiliation of the church. Leave blank if none or enter "non-denominational".
-   */
-  denomination?: string | null;
-  /**
-   * Photo of the church
-   */
-  featuredImage?: (number | null) | Media;
-  contact?: {
-    /**
-     * Contact phone number
-     */
-    phone?: string | null;
-    /**
-     * Contact email address
-     */
-    email?: string | null;
-    /**
-     * Church website URL
-     */
-    website?: string | null;
-  };
-  location?: {
-    /**
-     * Full address of the church
-     */
-    address?: string | null;
-  };
-  /**
-   * Regular service times
-   */
-  serviceTimes?:
-    | {
-        day?: ('sunday' | 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday') | null;
-        /**
-         * Service time (e.g., "9:00 AM")
-         */
-        time?: string | null;
-        /**
-         * Name of service (e.g., "Morning Worship")
-         */
-        serviceName?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Additional information about the church
-   */
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  status?: ('draft' | 'published' | 'archived') | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
+	id: number;
+	/**
+	 * Select the market area this church belongs to
+	 */
+	marketArea: number | MarketArea;
+	name: string;
+	/**
+	 * URL-friendly identifier for the church
+	 */
+	slug: string;
+	/**
+	 * Denomination or affiliation of the church. Leave blank if none or enter "non-denominational".
+	 */
+	denomination?: string | null;
+	/**
+	 * Photo of the church
+	 */
+	featuredImage?: (number | null) | Media;
+	contact?: {
+		/**
+		 * Contact phone number
+		 */
+		phone?: string | null;
+		/**
+		 * Contact email address
+		 */
+		email?: string | null;
+		/**
+		 * Church website URL
+		 */
+		website?: string | null;
+	};
+	location?: {
+		/**
+		 * Full address of the church
+		 */
+		address?: string | null;
+	};
+	/**
+	 * Regular service times
+	 */
+	serviceTimes?:
+		| {
+				day?:
+					| (
+							| 'sunday'
+							| 'monday'
+							| 'tuesday'
+							| 'wednesday'
+							| 'thursday'
+							| 'friday'
+							| 'saturday'
+					  )
+					| null;
+				/**
+				 * Service time (e.g., "9:00 AM")
+				 */
+				time?: string | null;
+				/**
+				 * Name of service (e.g., "Morning Worship")
+				 */
+				serviceName?: string | null;
+				id?: string | null;
+		  }[]
+		| null;
+	/**
+	 * Additional information about the church
+	 */
+	content?: {
+		root: {
+			type: string;
+			children: {
+				type: any;
+				version: number;
+				[k: string]: unknown;
+			}[];
+			direction: ('ltr' | 'rtl') | null;
+			format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+			indent: number;
+			version: number;
+		};
+		[k: string]: unknown;
+	} | null;
+	status?: ('draft' | 'published' | 'archived') | null;
+	updatedAt: string;
+	createdAt: string;
+	_status?: ('draft' | 'published') | null;
 }
 /**
  * Local schools and educational institutions for market areas
@@ -520,864 +581,947 @@ export interface Church {
  * via the `definition` "schools".
  */
 export interface School {
-  id: number;
-  /**
-   * Select the market area this school belongs to
-   */
-  marketArea: number | MarketArea;
-  name: string;
-  /**
-   * URL-friendly identifier for the school
-   */
-  slug: string;
-  /**
-   * A brief description of the school
-   */
-  description?: string | null;
-  /**
-   * Photo of the school
-   */
-  featuredImage?: (number | null) | Media;
-  /**
-   * School district name
-   */
-  district?: string | null;
-  contact?: {
-    /**
-     * Main phone number
-     */
-    phone?: string | null;
-    /**
-     * Contact email address
-     */
-    email?: string | null;
-    /**
-     * School website URL
-     */
-    website?: string | null;
-  };
-  location?: {
-    /**
-     * Full address of the school
-     */
-    address?: string | null;
-  };
-  /**
-   * Grade levels served (e.g., "K-5", "9-12")
-   */
-  grades?: string | null;
-  /**
-   * Additional information about the school
-   */
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  status?: ('draft' | 'published' | 'archived') | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
+	id: number;
+	/**
+	 * Select the market area this school belongs to
+	 */
+	marketArea: number | MarketArea;
+	name: string;
+	/**
+	 * URL-friendly identifier for the school
+	 */
+	slug: string;
+	/**
+	 * A brief description of the school
+	 */
+	description?: string | null;
+	/**
+	 * Photo of the school
+	 */
+	featuredImage?: (number | null) | Media;
+	/**
+	 * School district name
+	 */
+	district?: string | null;
+	contact?: {
+		/**
+		 * Main phone number
+		 */
+		phone?: string | null;
+		/**
+		 * Contact email address
+		 */
+		email?: string | null;
+		/**
+		 * School website URL
+		 */
+		website?: string | null;
+	};
+	location?: {
+		/**
+		 * Full address of the school
+		 */
+		address?: string | null;
+	};
+	/**
+	 * Grade levels served (e.g., "K-5", "9-12")
+	 */
+	grades?: string | null;
+	/**
+	 * Additional information about the school
+	 */
+	content?: {
+		root: {
+			type: string;
+			children: {
+				type: any;
+				version: number;
+				[k: string]: unknown;
+			}[];
+			direction: ('ltr' | 'rtl') | null;
+			format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+			indent: number;
+			version: number;
+		};
+		[k: string]: unknown;
+	} | null;
+	status?: ('draft' | 'published' | 'archived') | null;
+	updatedAt: string;
+	createdAt: string;
+	_status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "file-uploads".
  */
 export interface FileUpload {
-  id: number;
-  /**
-   * The form submission this file is attached to
-   */
-  formSubmission?: (number | null) | FormSubmission;
-  /**
-   * Legacy text reference to form submission (use formSubmission relationship instead)
-   */
-  submissionId?: string | null;
-  /**
-   * Temporary field to link file to submission after upload (not stored)
-   */
-  pendingSubmissionId?: string | null;
-  /**
-   * The form field name this upload corresponds to
-   */
-  fieldName?: string | null;
-  /**
-   * Timestamp when this file was uploaded
-   */
-  submittedAt?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
+	id: number;
+	/**
+	 * The form submission this file is attached to
+	 */
+	formSubmission?: (number | null) | FormSubmission;
+	/**
+	 * Legacy text reference to form submission (use formSubmission relationship instead)
+	 */
+	submissionId?: string | null;
+	/**
+	 * Temporary field to link file to submission after upload (not stored)
+	 */
+	pendingSubmissionId?: string | null;
+	/**
+	 * The form field name this upload corresponds to
+	 */
+	fieldName?: string | null;
+	/**
+	 * Timestamp when this file was uploaded
+	 */
+	submittedAt?: string | null;
+	updatedAt: string;
+	createdAt: string;
+	url?: string | null;
+	thumbnailURL?: string | null;
+	filename?: string | null;
+	mimeType?: string | null;
+	filesize?: number | null;
+	width?: number | null;
+	height?: number | null;
+	focalX?: number | null;
+	focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "form-submissions".
  */
 export interface FormSubmission {
-  id: number;
-  form: number | Form;
-  submissionData?:
-    | {
-        field: string;
-        value: string;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Files uploaded with this form submission
-   */
-  uploadedFiles?: {
-    docs?: (number | FileUpload)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  updatedAt: string;
-  createdAt: string;
+	id: number;
+	form: number | Form;
+	submissionData?:
+		| {
+				field: string;
+				value: string;
+				id?: string | null;
+		  }[]
+		| null;
+	/**
+	 * Files uploaded with this form submission
+	 */
+	uploadedFiles?: {
+		docs?: (number | FileUpload)[];
+		hasNextPage?: boolean;
+		totalDocs?: number;
+	};
+	updatedAt: string;
+	createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "forms".
  */
 export interface Form {
-  id: number;
-  title: string;
-  fields?:
-    | (
-        | {
-            name: string;
-            label?: string | null;
-            width?: number | null;
-            required?: boolean | null;
-            defaultValue?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'checkbox';
-          }
-        | {
-            name: string;
-            label?: string | null;
-            width?: number | null;
-            required?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'country';
-          }
-        | {
-            name: string;
-            label?: string | null;
-            width?: number | null;
-            required?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'email';
-          }
-        | {
-            message?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'message';
-          }
-        | {
-            name: string;
-            label?: string | null;
-            width?: number | null;
-            defaultValue?: number | null;
-            required?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'number';
-          }
-        | {
-            name: string;
-            label?: string | null;
-            width?: number | null;
-            defaultValue?: string | null;
-            placeholder?: string | null;
-            options?:
-              | {
-                  label: string;
-                  value: string;
-                  id?: string | null;
-                }[]
-              | null;
-            required?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'select';
-          }
-        | {
-            name: string;
-            label?: string | null;
-            width?: number | null;
-            required?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'state';
-          }
-        | {
-            name: string;
-            label?: string | null;
-            width?: number | null;
-            defaultValue?: string | null;
-            required?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'text';
-          }
-        | {
-            name: string;
-            label?: string | null;
-            width?: number | null;
-            defaultValue?: string | null;
-            required?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'textarea';
-          }
-        | {
-            name: string;
-            label?: string | null;
-            width?: number | null;
-            required?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'upload';
-          }
-      )[]
-    | null;
-  submitButtonLabel?: string | null;
-  /**
-   * Choose whether to display an on-page message or redirect to a different page after they submit the form.
-   */
-  confirmationType?: ('message' | 'redirect') | null;
-  confirmationMessage?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  redirect?: {
-    url: string;
-  };
-  /**
-   * Send custom emails when the form submits. Use comma separated lists to send the same email to multiple recipients. To reference a value from this form, wrap that field's name with double curly brackets, i.e. {{firstName}}. You can use a wildcard {{*}} to output all data and {{*:table}} to format it as an HTML table in the email.
-   */
-  emails?:
-    | {
-        emailTo?: string | null;
-        cc?: string | null;
-        bcc?: string | null;
-        replyTo?: string | null;
-        emailFrom?: string | null;
-        subject: string;
-        /**
-         * Enter the message that should be sent in this email.
-         */
-        message?: {
-          root: {
-            type: string;
-            children: {
-              type: any;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
+	id: number;
+	title: string;
+	fields?:
+		| (
+				| {
+						name: string;
+						label?: string | null;
+						width?: number | null;
+						required?: boolean | null;
+						defaultValue?: boolean | null;
+						id?: string | null;
+						blockName?: string | null;
+						blockType: 'checkbox';
+				  }
+				| {
+						name: string;
+						label?: string | null;
+						width?: number | null;
+						required?: boolean | null;
+						id?: string | null;
+						blockName?: string | null;
+						blockType: 'country';
+				  }
+				| {
+						name: string;
+						label?: string | null;
+						width?: number | null;
+						required?: boolean | null;
+						id?: string | null;
+						blockName?: string | null;
+						blockType: 'email';
+				  }
+				| {
+						message?: {
+							root: {
+								type: string;
+								children: {
+									type: any;
+									version: number;
+									[k: string]: unknown;
+								}[];
+								direction: ('ltr' | 'rtl') | null;
+								format:
+									| 'left'
+									| 'start'
+									| 'center'
+									| 'right'
+									| 'end'
+									| 'justify'
+									| '';
+								indent: number;
+								version: number;
+							};
+							[k: string]: unknown;
+						} | null;
+						id?: string | null;
+						blockName?: string | null;
+						blockType: 'message';
+				  }
+				| {
+						name: string;
+						label?: string | null;
+						width?: number | null;
+						defaultValue?: number | null;
+						required?: boolean | null;
+						id?: string | null;
+						blockName?: string | null;
+						blockType: 'number';
+				  }
+				| {
+						name: string;
+						label?: string | null;
+						width?: number | null;
+						defaultValue?: string | null;
+						placeholder?: string | null;
+						options?:
+							| {
+									label: string;
+									value: string;
+									id?: string | null;
+							  }[]
+							| null;
+						required?: boolean | null;
+						id?: string | null;
+						blockName?: string | null;
+						blockType: 'select';
+				  }
+				| {
+						name: string;
+						label?: string | null;
+						width?: number | null;
+						required?: boolean | null;
+						id?: string | null;
+						blockName?: string | null;
+						blockType: 'state';
+				  }
+				| {
+						name: string;
+						label?: string | null;
+						width?: number | null;
+						defaultValue?: string | null;
+						required?: boolean | null;
+						id?: string | null;
+						blockName?: string | null;
+						blockType: 'text';
+				  }
+				| {
+						name: string;
+						label?: string | null;
+						width?: number | null;
+						defaultValue?: string | null;
+						required?: boolean | null;
+						id?: string | null;
+						blockName?: string | null;
+						blockType: 'textarea';
+				  }
+				| {
+						name: string;
+						label?: string | null;
+						width?: number | null;
+						required?: boolean | null;
+						id?: string | null;
+						blockName?: string | null;
+						blockType: 'upload';
+				  }
+		  )[]
+		| null;
+	submitButtonLabel?: string | null;
+	/**
+	 * Choose whether to display an on-page message or redirect to a different page after they submit the form.
+	 */
+	confirmationType?: ('message' | 'redirect') | null;
+	confirmationMessage?: {
+		root: {
+			type: string;
+			children: {
+				type: any;
+				version: number;
+				[k: string]: unknown;
+			}[];
+			direction: ('ltr' | 'rtl') | null;
+			format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+			indent: number;
+			version: number;
+		};
+		[k: string]: unknown;
+	} | null;
+	redirect?: {
+		url: string;
+	};
+	/**
+	 * Send custom emails when the form submits. Use comma separated lists to send the same email to multiple recipients. To reference a value from this form, wrap that field's name with double curly brackets, i.e. {{firstName}}. You can use a wildcard {{*}} to output all data and {{*:table}} to format it as an HTML table in the email.
+	 */
+	emails?:
+		| {
+				emailTo?: string | null;
+				cc?: string | null;
+				bcc?: string | null;
+				replyTo?: string | null;
+				emailFrom?: string | null;
+				subject: string;
+				/**
+				 * Enter the message that should be sent in this email.
+				 */
+				message?: {
+					root: {
+						type: string;
+						children: {
+							type: any;
+							version: number;
+							[k: string]: unknown;
+						}[];
+						direction: ('ltr' | 'rtl') | null;
+						format:
+							| 'left'
+							| 'start'
+							| 'center'
+							| 'right'
+							| 'end'
+							| 'justify'
+							| '';
+						indent: number;
+						version: number;
+					};
+					[k: string]: unknown;
+				} | null;
+				id?: string | null;
+		  }[]
+		| null;
+	updatedAt: string;
+	createdAt: string;
+}
+/**
+ * This is a collection of automatically created search results. These results are used by the global site search and will be updated automatically as documents in the CMS are created or updated.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "search".
+ */
+export interface Search {
+	id: number;
+	title?: string | null;
+	priority?: number | null;
+	doc:
+		| {
+				relationTo: 'blog';
+				value: number | Blog;
+		  }
+		| {
+				relationTo: 'churches';
+				value: number | Church;
+		  }
+		| {
+				relationTo: 'local-events';
+				value: number | LocalEvent;
+		  }
+		| {
+				relationTo: 'market-areas';
+				value: number | MarketArea;
+		  }
+		| {
+				relationTo: 'news';
+				value: number | News;
+		  }
+		| {
+				relationTo: 'schools';
+				value: number | School;
+		  }
+		| {
+				relationTo: 'sports';
+				value: number | Sport;
+		  };
+	updatedAt: string;
+	createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
-  id: number;
-  key: string;
-  data:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
+	id: number;
+	key: string;
+	data:
+		| {
+				[k: string]: unknown;
+		  }
+		| unknown[]
+		| string
+		| number
+		| boolean
+		| null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: number;
-  document?:
-    | ({
-        relationTo: 'market-areas';
-        value: number | MarketArea;
-      } | null)
-    | ({
-        relationTo: 'users';
-        value: number | User;
-      } | null)
-    | ({
-        relationTo: 'media';
-        value: number | Media;
-      } | null)
-    | ({
-        relationTo: 'blog';
-        value: number | Blog;
-      } | null)
-    | ({
-        relationTo: 'news';
-        value: number | News;
-      } | null)
-    | ({
-        relationTo: 'sports';
-        value: number | Sport;
-      } | null)
-    | ({
-        relationTo: 'local-events';
-        value: number | LocalEvent;
-      } | null)
-    | ({
-        relationTo: 'churches';
-        value: number | Church;
-      } | null)
-    | ({
-        relationTo: 'schools';
-        value: number | School;
-      } | null)
-    | ({
-        relationTo: 'file-uploads';
-        value: number | FileUpload;
-      } | null)
-    | ({
-        relationTo: 'forms';
-        value: number | Form;
-      } | null)
-    | ({
-        relationTo: 'form-submissions';
-        value: number | FormSubmission;
-      } | null);
-  globalSlug?: string | null;
-  user: {
-    relationTo: 'users';
-    value: number | User;
-  };
-  updatedAt: string;
-  createdAt: string;
+	id: number;
+	document?:
+		| ({
+				relationTo: 'market-areas';
+				value: number | MarketArea;
+		  } | null)
+		| ({
+				relationTo: 'users';
+				value: number | User;
+		  } | null)
+		| ({
+				relationTo: 'media';
+				value: number | Media;
+		  } | null)
+		| ({
+				relationTo: 'blog';
+				value: number | Blog;
+		  } | null)
+		| ({
+				relationTo: 'news';
+				value: number | News;
+		  } | null)
+		| ({
+				relationTo: 'sports';
+				value: number | Sport;
+		  } | null)
+		| ({
+				relationTo: 'local-events';
+				value: number | LocalEvent;
+		  } | null)
+		| ({
+				relationTo: 'churches';
+				value: number | Church;
+		  } | null)
+		| ({
+				relationTo: 'schools';
+				value: number | School;
+		  } | null)
+		| ({
+				relationTo: 'file-uploads';
+				value: number | FileUpload;
+		  } | null)
+		| ({
+				relationTo: 'forms';
+				value: number | Form;
+		  } | null)
+		| ({
+				relationTo: 'form-submissions';
+				value: number | FormSubmission;
+		  } | null)
+		| ({
+				relationTo: 'search';
+				value: number | Search;
+		  } | null);
+	globalSlug?: string | null;
+	user: {
+		relationTo: 'users';
+		value: number | User;
+	};
+	updatedAt: string;
+	createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: number;
-  user: {
-    relationTo: 'users';
-    value: number | User;
-  };
-  key?: string | null;
-  value?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  updatedAt: string;
-  createdAt: string;
+	id: number;
+	user: {
+		relationTo: 'users';
+		value: number | User;
+	};
+	key?: string | null;
+	value?:
+		| {
+				[k: string]: unknown;
+		  }
+		| unknown[]
+		| string
+		| number
+		| boolean
+		| null;
+	updatedAt: string;
+	createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: number;
-  name?: string | null;
-  batch?: number | null;
-  updatedAt: string;
-  createdAt: string;
+	id: number;
+	name?: string | null;
+	batch?: number | null;
+	updatedAt: string;
+	createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "market-areas_select".
  */
 export interface MarketAreasSelect<T extends boolean = true> {
-  name?: T;
-  slug?: T;
-  description?: T;
-  active?: T;
-  surroundingAreas?:
-    | T
-    | {
-        name?: T;
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
+	name?: T;
+	slug?: T;
+	description?: T;
+	active?: T;
+	surroundingAreas?:
+		| T
+		| {
+				name?: T;
+				id?: T;
+		  };
+	streamId?:
+		| T
+		| {
+				title?: T;
+				id?: T;
+		  };
+	customStreamUrl?:
+		| T
+		| {
+				title?: T;
+				url?: T;
+				id?: T;
+		  };
+	updatedAt?: T;
+	createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
-  role?: T;
-  name?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
-  sessions?:
-    | T
-    | {
-        id?: T;
-        createdAt?: T;
-        expiresAt?: T;
-      };
+	role?: T;
+	name?: T;
+	updatedAt?: T;
+	createdAt?: T;
+	email?: T;
+	resetPasswordToken?: T;
+	resetPasswordExpiration?: T;
+	salt?: T;
+	hash?: T;
+	loginAttempts?: T;
+	lockUntil?: T;
+	sessions?:
+		| T
+		| {
+				id?: T;
+				createdAt?: T;
+				expiresAt?: T;
+		  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
-  alt?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
+	alt?: T;
+	updatedAt?: T;
+	createdAt?: T;
+	url?: T;
+	thumbnailURL?: T;
+	filename?: T;
+	mimeType?: T;
+	filesize?: T;
+	width?: T;
+	height?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "blog_select".
  */
 export interface BlogSelect<T extends boolean = true> {
-  title?: T;
-  slug?: T;
-  description?: T;
-  author?: T;
-  publishDate?: T;
-  content?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
+	title?: T;
+	slug?: T;
+	description?: T;
+	author?: T;
+	publishDate?: T;
+	content?: T;
+	updatedAt?: T;
+	createdAt?: T;
+	_status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "news_select".
  */
 export interface NewsSelect<T extends boolean = true> {
-  marketArea?: T;
-  title?: T;
-  slug?: T;
-  description?: T;
-  featuredImage?: T;
-  publishDate?: T;
-  content?: T;
-  status?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
+	marketArea?: T;
+	title?: T;
+	slug?: T;
+	description?: T;
+	featuredImage?: T;
+	publishDate?: T;
+	content?: T;
+	status?: T;
+	updatedAt?: T;
+	createdAt?: T;
+	_status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "sports_select".
  */
 export interface SportsSelect<T extends boolean = true> {
-  marketArea?: T;
-  title?: T;
-  slug?: T;
-  description?: T;
-  featuredImage?: T;
-  publishDate?: T;
-  content?: T;
-  status?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
+	marketArea?: T;
+	title?: T;
+	slug?: T;
+	description?: T;
+	featuredImage?: T;
+	publishDate?: T;
+	content?: T;
+	status?: T;
+	updatedAt?: T;
+	createdAt?: T;
+	_status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "local-events_select".
  */
 export interface LocalEventsSelect<T extends boolean = true> {
-  marketArea?: T;
-  title?: T;
-  slug?: T;
-  description?: T;
-  featuredImage?: T;
-  eventDate?: T;
-  eventEndDate?: T;
-  location?:
-    | T
-    | {
-        venueName?: T;
-        address?: T;
-      };
-  eventType?: T;
-  content?: T;
-  status?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
+	marketArea?: T;
+	title?: T;
+	slug?: T;
+	description?: T;
+	featuredImage?: T;
+	eventDate?: T;
+	eventEndDate?: T;
+	location?:
+		| T
+		| {
+				venueName?: T;
+				address?: T;
+		  };
+	eventType?: T;
+	content?: T;
+	status?: T;
+	updatedAt?: T;
+	createdAt?: T;
+	_status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "churches_select".
  */
 export interface ChurchesSelect<T extends boolean = true> {
-  marketArea?: T;
-  name?: T;
-  slug?: T;
-  denomination?: T;
-  featuredImage?: T;
-  contact?:
-    | T
-    | {
-        phone?: T;
-        email?: T;
-        website?: T;
-      };
-  location?:
-    | T
-    | {
-        address?: T;
-      };
-  serviceTimes?:
-    | T
-    | {
-        day?: T;
-        time?: T;
-        serviceName?: T;
-        id?: T;
-      };
-  content?: T;
-  status?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
+	marketArea?: T;
+	name?: T;
+	slug?: T;
+	denomination?: T;
+	featuredImage?: T;
+	contact?:
+		| T
+		| {
+				phone?: T;
+				email?: T;
+				website?: T;
+		  };
+	location?:
+		| T
+		| {
+				address?: T;
+		  };
+	serviceTimes?:
+		| T
+		| {
+				day?: T;
+				time?: T;
+				serviceName?: T;
+				id?: T;
+		  };
+	content?: T;
+	status?: T;
+	updatedAt?: T;
+	createdAt?: T;
+	_status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "schools_select".
  */
 export interface SchoolsSelect<T extends boolean = true> {
-  marketArea?: T;
-  name?: T;
-  slug?: T;
-  description?: T;
-  featuredImage?: T;
-  district?: T;
-  contact?:
-    | T
-    | {
-        phone?: T;
-        email?: T;
-        website?: T;
-      };
-  location?:
-    | T
-    | {
-        address?: T;
-      };
-  grades?: T;
-  content?: T;
-  status?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
+	marketArea?: T;
+	name?: T;
+	slug?: T;
+	description?: T;
+	featuredImage?: T;
+	district?: T;
+	contact?:
+		| T
+		| {
+				phone?: T;
+				email?: T;
+				website?: T;
+		  };
+	location?:
+		| T
+		| {
+				address?: T;
+		  };
+	grades?: T;
+	content?: T;
+	status?: T;
+	updatedAt?: T;
+	createdAt?: T;
+	_status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "file-uploads_select".
  */
 export interface FileUploadsSelect<T extends boolean = true> {
-  formSubmission?: T;
-  submissionId?: T;
-  pendingSubmissionId?: T;
-  fieldName?: T;
-  submittedAt?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
+	formSubmission?: T;
+	submissionId?: T;
+	pendingSubmissionId?: T;
+	fieldName?: T;
+	submittedAt?: T;
+	updatedAt?: T;
+	createdAt?: T;
+	url?: T;
+	thumbnailURL?: T;
+	filename?: T;
+	mimeType?: T;
+	filesize?: T;
+	width?: T;
+	height?: T;
+	focalX?: T;
+	focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "forms_select".
  */
 export interface FormsSelect<T extends boolean = true> {
-  title?: T;
-  fields?:
-    | T
-    | {
-        checkbox?:
-          | T
-          | {
-              name?: T;
-              label?: T;
-              width?: T;
-              required?: T;
-              defaultValue?: T;
-              id?: T;
-              blockName?: T;
-            };
-        country?:
-          | T
-          | {
-              name?: T;
-              label?: T;
-              width?: T;
-              required?: T;
-              id?: T;
-              blockName?: T;
-            };
-        email?:
-          | T
-          | {
-              name?: T;
-              label?: T;
-              width?: T;
-              required?: T;
-              id?: T;
-              blockName?: T;
-            };
-        message?:
-          | T
-          | {
-              message?: T;
-              id?: T;
-              blockName?: T;
-            };
-        number?:
-          | T
-          | {
-              name?: T;
-              label?: T;
-              width?: T;
-              defaultValue?: T;
-              required?: T;
-              id?: T;
-              blockName?: T;
-            };
-        select?:
-          | T
-          | {
-              name?: T;
-              label?: T;
-              width?: T;
-              defaultValue?: T;
-              placeholder?: T;
-              options?:
-                | T
-                | {
-                    label?: T;
-                    value?: T;
-                    id?: T;
-                  };
-              required?: T;
-              id?: T;
-              blockName?: T;
-            };
-        state?:
-          | T
-          | {
-              name?: T;
-              label?: T;
-              width?: T;
-              required?: T;
-              id?: T;
-              blockName?: T;
-            };
-        text?:
-          | T
-          | {
-              name?: T;
-              label?: T;
-              width?: T;
-              defaultValue?: T;
-              required?: T;
-              id?: T;
-              blockName?: T;
-            };
-        textarea?:
-          | T
-          | {
-              name?: T;
-              label?: T;
-              width?: T;
-              defaultValue?: T;
-              required?: T;
-              id?: T;
-              blockName?: T;
-            };
-        upload?:
-          | T
-          | {
-              name?: T;
-              label?: T;
-              width?: T;
-              required?: T;
-              id?: T;
-              blockName?: T;
-            };
-      };
-  submitButtonLabel?: T;
-  confirmationType?: T;
-  confirmationMessage?: T;
-  redirect?:
-    | T
-    | {
-        url?: T;
-      };
-  emails?:
-    | T
-    | {
-        emailTo?: T;
-        cc?: T;
-        bcc?: T;
-        replyTo?: T;
-        emailFrom?: T;
-        subject?: T;
-        message?: T;
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
+	title?: T;
+	fields?:
+		| T
+		| {
+				checkbox?:
+					| T
+					| {
+							name?: T;
+							label?: T;
+							width?: T;
+							required?: T;
+							defaultValue?: T;
+							id?: T;
+							blockName?: T;
+					  };
+				country?:
+					| T
+					| {
+							name?: T;
+							label?: T;
+							width?: T;
+							required?: T;
+							id?: T;
+							blockName?: T;
+					  };
+				email?:
+					| T
+					| {
+							name?: T;
+							label?: T;
+							width?: T;
+							required?: T;
+							id?: T;
+							blockName?: T;
+					  };
+				message?:
+					| T
+					| {
+							message?: T;
+							id?: T;
+							blockName?: T;
+					  };
+				number?:
+					| T
+					| {
+							name?: T;
+							label?: T;
+							width?: T;
+							defaultValue?: T;
+							required?: T;
+							id?: T;
+							blockName?: T;
+					  };
+				select?:
+					| T
+					| {
+							name?: T;
+							label?: T;
+							width?: T;
+							defaultValue?: T;
+							placeholder?: T;
+							options?:
+								| T
+								| {
+										label?: T;
+										value?: T;
+										id?: T;
+								  };
+							required?: T;
+							id?: T;
+							blockName?: T;
+					  };
+				state?:
+					| T
+					| {
+							name?: T;
+							label?: T;
+							width?: T;
+							required?: T;
+							id?: T;
+							blockName?: T;
+					  };
+				text?:
+					| T
+					| {
+							name?: T;
+							label?: T;
+							width?: T;
+							defaultValue?: T;
+							required?: T;
+							id?: T;
+							blockName?: T;
+					  };
+				textarea?:
+					| T
+					| {
+							name?: T;
+							label?: T;
+							width?: T;
+							defaultValue?: T;
+							required?: T;
+							id?: T;
+							blockName?: T;
+					  };
+				upload?:
+					| T
+					| {
+							name?: T;
+							label?: T;
+							width?: T;
+							required?: T;
+							id?: T;
+							blockName?: T;
+					  };
+		  };
+	submitButtonLabel?: T;
+	confirmationType?: T;
+	confirmationMessage?: T;
+	redirect?:
+		| T
+		| {
+				url?: T;
+		  };
+	emails?:
+		| T
+		| {
+				emailTo?: T;
+				cc?: T;
+				bcc?: T;
+				replyTo?: T;
+				emailFrom?: T;
+				subject?: T;
+				message?: T;
+				id?: T;
+		  };
+	updatedAt?: T;
+	createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "form-submissions_select".
  */
 export interface FormSubmissionsSelect<T extends boolean = true> {
-  form?: T;
-  submissionData?:
-    | T
-    | {
-        field?: T;
-        value?: T;
-        id?: T;
-      };
-  uploadedFiles?: T;
-  updatedAt?: T;
-  createdAt?: T;
+	form?: T;
+	submissionData?:
+		| T
+		| {
+				field?: T;
+				value?: T;
+				id?: T;
+		  };
+	uploadedFiles?: T;
+	updatedAt?: T;
+	createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "search_select".
+ */
+export interface SearchSelect<T extends boolean = true> {
+	title?: T;
+	priority?: T;
+	doc?: T;
+	updatedAt?: T;
+	createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
-  key?: T;
-  data?: T;
+	key?: T;
+	data?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
-  document?: T;
-  globalSlug?: T;
-  user?: T;
-  updatedAt?: T;
-  createdAt?: T;
+	document?: T;
+	globalSlug?: T;
+	user?: T;
+	updatedAt?: T;
+	createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences_select".
  */
 export interface PayloadPreferencesSelect<T extends boolean = true> {
-  user?: T;
-  key?: T;
-  value?: T;
-  updatedAt?: T;
-  createdAt?: T;
+	user?: T;
+	key?: T;
+	value?: T;
+	updatedAt?: T;
+	createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-migrations_select".
  */
 export interface PayloadMigrationsSelect<T extends boolean = true> {
-  name?: T;
-  batch?: T;
-  updatedAt?: T;
-  createdAt?: T;
+	name?: T;
+	batch?: T;
+	updatedAt?: T;
+	createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {
-  [k: string]: unknown;
+	[k: string]: unknown;
 }
 
-
 declare module 'payload' {
-  export interface GeneratedTypes extends Config {}
+	export interface GeneratedTypes extends Config {}
 }
