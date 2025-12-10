@@ -265,7 +265,7 @@ export default buildConfig({
 								// Send email notification to specific address
 								try {
 									await req.payload.sendEmail({
-										to: 'admin@cobaltweb.dev',
+										to: 'john.j.staud@tsfti.net',
 										replyTo: userEmail,
 										subject: `New Form Submission: ${form.title}`,
 										html: `
