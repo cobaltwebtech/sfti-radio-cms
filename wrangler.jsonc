@@ -32,7 +32,9 @@
       "bucket_name": "sfti-radio-cms-uploads-prod"
     }
   ],
+  // Payload requires specific environment bindings
   "env": {
+    // Production environment bindings used to access prod resources remotely
     "prod": {
       "d1_databases": [
         {

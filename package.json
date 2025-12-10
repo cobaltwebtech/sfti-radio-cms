@@ -1,6 +1,6 @@
 {
   "name": "sfti-radio-cms",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "SFTI Radio CMS built with Payload CMS",
   "license": "MIT",
   "type": "module",

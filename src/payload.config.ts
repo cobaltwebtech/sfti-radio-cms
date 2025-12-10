@@ -206,48 +206,79 @@ export default buildConfig({
 						async ({ doc, operation, req }) => {
 							// Only send email on create (new submission)
 							if (operation === 'create') {
+								// Get the form ID - handle both cases where form might be an object or just an ID
+								const formId =
+									typeof doc.form === 'object' ? doc.form.id : doc.form;
+
 								// Get the form details
 								const form = await req.payload.findByID({
 									collection: 'forms',
-									id: doc.form,
+									id: formId,
 								});
 
-								// Get all admin users to notify
-								const adminUsers = await req.payload.find({
-									collection: 'users',
-									where: {
-										role: {
-											equals: 'admin',
-										},
-									},
-								});
+								// Format submission data for email and extract user's email
+								// submissionData is an array of field objects with field and value
+								let userEmail: string | undefined;
+								const submissionData = Array.isArray(doc.submissionData)
+									? doc.submissionData
+											.map(
+												(field: {
+													field?: string;
+													value?: string | number | boolean;
+												}) => {
+													// Use the field name/id as the label, or get it from the form fields
+													const fieldName = field.field || 'Unknown Field';
 
-								// Format submission data for email
-								const submissionData = Object.entries(doc.submissionData || {})
-									.map(([key, value]) => `${key}: ${value}`)
-									.join('\n');
+													// Try to find the matching field definition to get the label
+													const fieldDef = form.fields?.find(
+														(f) =>
+															('name' in f && f.name === fieldName) ||
+															f.id === fieldName,
+													);
 
-								// Send email to each admin
-								for (const admin of adminUsers.docs) {
-									try {
-										await req.payload.sendEmail({
-											to: admin.email,
-											subject: `New Form Submission: ${form.title}`,
-											html: `
-												<h2>New Form Submission</h2>
-												<p><strong>Form:</strong> ${form.title}</p>
-												<p><strong>Submitted:</strong> ${new Date(doc.createdAt).toLocaleString()}</p>
-												<h3>Submission Details:</h3>
-												<pre>${submissionData}</pre>
-												<p><a href="https://www.sfti-radio.net/admin/collections/form-submissions/${doc.id}">View in Admin Panel</a></p>
-											`,
-										});
-									} catch (error) {
-										console.error(
-											`Failed to send email to ${admin.email}:`,
-											error,
-										);
-									}
+													// Check if this is an email field and extract the value
+													if (
+														fieldDef &&
+														'blockType' in fieldDef &&
+														fieldDef.blockType === 'email' &&
+														typeof field.value === 'string'
+													) {
+														userEmail = field.value;
+													}
+
+													// Safely access label and name with type narrowing
+													const label =
+														(fieldDef && 'label' in fieldDef
+															? fieldDef.label
+															: undefined) ||
+														(fieldDef && 'name' in fieldDef
+															? fieldDef.name
+															: undefined) ||
+														fieldName;
+													const value = field.value ?? '';
+													return `<p><strong>${label}:</strong> ${value}</p>`;
+												},
+											)
+											.join('')
+									: '<p>No submission data available</p>';
+
+								// Send email notification to specific address
+								try {
+									await req.payload.sendEmail({
+										to: 'admin@cobaltweb.dev',
+										replyTo: userEmail,
+										subject: `New Form Submission: ${form.title}`,
+										html: `
+											<h2>New Form Submission</h2>
+											<p><strong>Form:</strong> ${form.title}</p>
+											<p><strong>Submitted:</strong> ${new Date(doc.createdAt).toLocaleString()}</p>
+											<h3>Submission Details:</h3>
+											${submissionData}
+											<p><a href="https://cms.sfti-radio.net/admin/collections/form-submissions/${doc.id}">View in Admin Panel</a></p>
+										`,
+									});
+								} catch (error) {
+									console.error('Failed to send form submission email:', error);
 								}
 							}
 						},

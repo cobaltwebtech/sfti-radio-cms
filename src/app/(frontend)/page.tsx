@@ -17,15 +17,10 @@ export default async function HomePage() {
 				{user && <h1>Welcome back, {user.email}</h1>}
 				<div className="links">
 					<a className="admin" href={payloadConfig.routes.admin}>
-						Go to admin panel
+						Go to CMS Dashboard
 					</a>
-					<a
-						className="docs"
-						href="/"
-						rel="noopener noreferrer"
-						target="_blank"
-					>
-						Documentation
+					<a className="docs" href="/" rel="noopener noreferrer">
+						Docs Coming Soon
 					</a>
 				</div>
 			</div>
