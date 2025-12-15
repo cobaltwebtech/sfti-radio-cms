@@ -1,6 +1,6 @@
 {
   "name": "sfti-radio-cms",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "SFTI Radio CMS built with Payload CMS",
   "license": "MIT",
   "type": "module",
@@ -29,28 +29,28 @@
     "up:biome": "pnpm up @biomejs/biome@latest && pnpm biome migrate --write"
   },
   "dependencies": {
-    "@opennextjs/cloudflare": "^1.14.4",
-    "@payloadcms/db-d1-sqlite": "^3.68.0",
-    "@payloadcms/email-resend": "^3.68.0",
-    "@payloadcms/next": "^3.68.0",
-    "@payloadcms/plugin-form-builder": "^3.68.0",
-    "@payloadcms/plugin-search": "^3.68.0",
-    "@payloadcms/richtext-lexical": "^3.68.0",
-    "@payloadcms/storage-r2": "^3.68.0",
-    "@payloadcms/ui": "^3.68.0",
+    "@opennextjs/cloudflare": "^1.14.6",
+    "@payloadcms/db-d1-sqlite": "^3.68.4",
+    "@payloadcms/email-resend": "^3.68.4",
+    "@payloadcms/next": "^3.68.4",
+    "@payloadcms/plugin-form-builder": "^3.68.4",
+    "@payloadcms/plugin-search": "^3.68.4",
+    "@payloadcms/richtext-lexical": "^3.68.4",
+    "@payloadcms/storage-r2": "^3.68.4",
+    "@payloadcms/ui": "^3.68.4",
     "cross-env": "^10.1.0",
     "dotenv": "^17.2.3",
     "graphql": "^16.12.0",
-    "next": "16.0.8",
-    "payload": "3.68.0",
-    "react": "19.2.1",
-    "react-dom": "19.2.1"
+    "next": "16.0.10",
+    "payload": "3.68.4",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.8",
+    "@biomejs/biome": "^2.3.9",
     "@playwright/test": "^1.57.0",
-    "@testing-library/react": "^16.3.0",
-    "@types/node": "^24.10.2",
+    "@testing-library/react": "^16.3.1",
+    "@types/node": "^25.0.2",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.2",
@@ -58,13 +58,13 @@
     "playwright": "^1.57.0",
     "playwright-core": "^1.57.0",
     "typescript": "^5.9.3",
-    "vite-tsconfig-paths": "^5.1.4",
+    "vite-tsconfig-paths": "^6.0.1",
     "vitest": "^4.0.15",
-    "wrangler": "^4.53.0"
+    "wrangler": "^4.54.0"
   },
   "engines": {
-    "node": "^18.20.2 || >=20.9.0",
-    "pnpm": "^9 || ^10"
+    "node": ">=20.9.0",
+    "pnpm": "^10"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -72,12 +72,5 @@
       "esbuild",
       "unrs-resolver"
     ]
-  },
-  "cloudflare": {
-    "bindings": {
-      "PAYLOAD_SECRET": {
-        "description": "Generate a random string using `openssl rand -hex 32`"
-      }
-    }
   }
 }
