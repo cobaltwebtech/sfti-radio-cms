@@ -7,7 +7,8 @@
     "nodejs_compat",
     "global_fetch_strictly_public"
   ],
-	"observability": {
+	"workers_dev": false,
+  "observability": {
 		"enabled": true
 	},
   "assets": {
