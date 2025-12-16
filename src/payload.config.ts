@@ -16,6 +16,7 @@ import type { Block, PayloadComponent } from 'payload';
 import { buildConfig } from 'payload';
 import type { GetPlatformProxyOptions } from 'wrangler';
 import { isAdmin, isLoggedIn, publicReadAccess } from './access';
+import { withCacheInvalidation } from './cache';
 import { Blog } from './collections/Blog';
 import { Churches } from './collections/Churches';
 import { FileUploads } from './collections/FileUploads';
@@ -141,16 +142,16 @@ export default buildConfig({
 		},
 	},
 	collections: [
-		MarketArea,
-		Users,
-		Media,
-		Blog,
-		News,
-		Sports,
-		LocalEvents,
-		Churches,
-		Schools,
-		FileUploads,
+		withCacheInvalidation(MarketArea),
+		Users, // Users are not cached
+		withCacheInvalidation(Media),
+		withCacheInvalidation(Blog),
+		withCacheInvalidation(News),
+		withCacheInvalidation(Sports),
+		withCacheInvalidation(LocalEvents),
+		withCacheInvalidation(Churches),
+		withCacheInvalidation(Schools),
+		FileUploads, // File uploads are not cached
 	],
 	editor: lexicalEditor(),
 	secret: process.env.PAYLOAD_SECRET || '',
