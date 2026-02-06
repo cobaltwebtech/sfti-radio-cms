@@ -18,6 +18,15 @@ export const MarketArea: CollectionConfig = {
 	},
 	fields: [
 		{
+			name: 'active',
+			type: 'checkbox',
+			defaultValue: true,
+			admin: {
+				description:
+					'Whether this market area is active and visible on the front end website sfti-radio.net',
+			},
+		},
+		{
 			name: 'name',
 			type: 'text',
 			required: true,
@@ -68,12 +77,10 @@ export const MarketArea: CollectionConfig = {
 			},
 		},
 		{
-			name: 'active',
-			type: 'checkbox',
-			defaultValue: true,
+			name: 'facebookUrl',
+			type: 'text',
 			admin: {
-				description:
-					'Whether this market area is active and visible on the front end',
+				description: 'Optional Facebook page URL for this market area. This will be rendered as a button with the Facebook icon on the front end website sfti-radio.net',
 			},
 		},
 		{
@@ -91,33 +98,6 @@ export const MarketArea: CollectionConfig = {
 					required: true,
 					admin: {
 						description: 'Name of the surrounding town, suburb, or community',
-					},
-				},
-			],
-		},
-		{
-			name: 'streamIds',
-			type: 'array',
-			label: 'Stream IDs',
-			admin: {
-				description: 'Live 365 Stream IDs associated with this market area',
-			},
-			fields: [
-				{
-					name: 'title',
-					type: 'text',
-					required: true,
-					admin: {
-						description:
-							'Display name for this stream (e.g. "Main Stream", "Country Channel")',
-					},
-				},
-				{
-					name: 'streamId',
-					type: 'text',
-					required: true,
-					admin: {
-						description: 'Live 365 Stream ID',
 					},
 				},
 			],
@@ -145,6 +125,33 @@ export const MarketArea: CollectionConfig = {
 					required: true,
 					admin: {
 						description: 'Custom Stream URL',
+					},
+				},
+			],
+		},
+		{
+			name: 'streamIds',
+			type: 'array',
+			label: 'Live 365 Stream IDs',
+			admin: {
+				description: 'Live 365 Stream IDs associated with this market area',
+			},
+			fields: [
+				{
+					name: 'title',
+					type: 'text',
+					required: true,
+					admin: {
+						description:
+							'Display name for this stream (e.g. "Main Stream", "Country Channel")',
+					},
+				},
+				{
+					name: 'streamId',
+					type: 'text',
+					required: true,
+					admin: {
+						description: 'Live 365 Stream ID',
 					},
 				},
 			],

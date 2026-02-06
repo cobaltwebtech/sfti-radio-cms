@@ -149,6 +149,10 @@ export interface UserAuthOperations {
 export interface MarketArea {
   id: number;
   /**
+   * Whether this market area is active and visible on the front end website sfti-radio.net
+   */
+  active?: boolean | null;
+  /**
    * Market Area name (e.g. Dublin, Erath County, or 76446)
    */
   name: string;
@@ -161,9 +165,9 @@ export interface MarketArea {
    */
   description?: string | null;
   /**
-   * Whether this market area is active and visible on the front end
+   * Optional Facebook page URL for this market area. This will be rendered as a button with the Facebook icon on the front end website sfti-radio.net
    */
-  active?: boolean | null;
+  facebookUrl?: string | null;
   /**
    * Add nearby towns, suburbs, or communities that are part of this market area. These will be used for search functionality.
    */
@@ -173,22 +177,6 @@ export interface MarketArea {
          * Name of the surrounding town, suburb, or community
          */
         name: string;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Live 365 Stream IDs associated with this market area
-   */
-  streamIds?:
-    | {
-        /**
-         * Display name for this stream (e.g. "Main Stream", "Country Channel")
-         */
-        title: string;
-        /**
-         * Live 365 Stream ID
-         */
-        streamId: string;
         id?: string | null;
       }[]
     | null;
@@ -205,6 +193,22 @@ export interface MarketArea {
          * Custom Stream URL
          */
         url: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Live 365 Stream IDs associated with this market area
+   */
+  streamIds?:
+    | {
+        /**
+         * Display name for this stream (e.g. "Main Stream", "Country Channel")
+         */
+        title: string;
+        /**
+         * Live 365 Stream ID
+         */
+        streamId: string;
         id?: string | null;
       }[]
     | null;
@@ -1033,21 +1037,15 @@ export interface PayloadMigration {
  * via the `definition` "market-areas_select".
  */
 export interface MarketAreasSelect<T extends boolean = true> {
+  active?: T;
   name?: T;
   slug?: T;
   description?: T;
-  active?: T;
+  facebookUrl?: T;
   surroundingAreas?:
     | T
     | {
         name?: T;
-        id?: T;
-      };
-  streamIds?:
-    | T
-    | {
-        title?: T;
-        streamId?: T;
         id?: T;
       };
   customStreamUrl?:
@@ -1055,6 +1053,13 @@ export interface MarketAreasSelect<T extends boolean = true> {
     | {
         title?: T;
         url?: T;
+        id?: T;
+      };
+  streamIds?:
+    | T
+    | {
+        title?: T;
+        streamId?: T;
         id?: T;
       };
   updatedAt?: T;
