@@ -11,7 +11,7 @@ import { resendAdapter } from '@payloadcms/email-resend';
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
 import { searchPlugin } from '@payloadcms/plugin-search';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
-import { r2Storage } from '@payloadcms/storage-r2';
+import { r2Storage, type R2StorageOptions } from '@payloadcms/storage-r2';
 import type { Block, PayloadComponent } from 'payload';
 import { buildConfig } from 'payload';
 import type { GetPlatformProxyOptions } from 'wrangler';
@@ -117,6 +117,11 @@ const UploadBlock: Block = {
 	],
 };
 
+// Helper function to adapt type mismatch Wrangler R2Bucket to @payloadcms/storage-r2 R2Bucket
+function adaptR2Bucket(bucket: unknown): R2StorageOptions['bucket'] {
+	return bucket as R2StorageOptions['bucket'];
+}
+
 export default buildConfig({
 	admin: {
 		user: Users.slug,
@@ -170,11 +175,11 @@ export default buildConfig({
 	plugins: [
 		// storage-adapter-placeholder
 		r2Storage({
-			bucket: cloudflare.env.R2_CMS_MEDIA,
+			bucket: adaptR2Bucket(cloudflare.env.R2_CMS_MEDIA),
 			collections: { media: true },
 		}),
 		r2Storage({
-			bucket: cloudflare.env.R2_UPLOADS,
+			bucket: adaptR2Bucket(cloudflare.env.R2_UPLOADS),
 			collections: { 'file-uploads': true },
 		}),
 		formBuilderPlugin({
