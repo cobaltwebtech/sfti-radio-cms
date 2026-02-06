@@ -78,6 +78,7 @@ export const MarketArea: CollectionConfig = {
 		},
 		{
 			name: 'facebookUrl',
+			label: 'Facebook Page URL',
 			type: 'text',
 			admin: {
 				description: 'Optional Facebook page URL for this market area. This will be rendered as a button with the Facebook icon on the front end website sfti-radio.net',
