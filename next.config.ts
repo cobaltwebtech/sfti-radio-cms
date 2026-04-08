@@ -2,7 +2,11 @@ import { withPayload } from '@payloadcms/next/withPayload'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Your Next.js config here
+  // Limit build workers to 1 to prevent concurrent miniflare instances
+  // from causing SQLITE_BUSY on the local D1 database during page data collection
+  experimental: {
+    cpus: 1,
+  },
   webpack: (webpackConfig: any) => {
     webpackConfig.resolve.extensionAlias = {
       '.cjs': ['.cts', '.cjs'],

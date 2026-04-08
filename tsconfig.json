@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "lib": [
       "DOM",
       "DOM.Iterable",
-      "ES2022"
+      "ES2024"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -18,6 +19,13 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "maxNodeModuleJsDepth": 1,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "types": [
+      "node"
+    ],
     "plugins": [
       {
         "name": "next"
@@ -41,6 +49,7 @@
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    ".open-next"
   ]
 }
