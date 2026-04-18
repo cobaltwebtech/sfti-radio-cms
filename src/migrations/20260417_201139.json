@@ -232,6 +232,13 @@
 					"notNull": false,
 					"autoincrement": false
 				},
+				"program_schedule": {
+					"name": "program_schedule",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false,
+					"autoincrement": false
+				},
 				"facebook_url": {
 					"name": "facebook_url",
 					"type": "text",
@@ -5484,6 +5491,6 @@
 	"internal": {
 		"indexes": {}
 	},
-	"id": "9e416f6d-e6e1-4440-ac7f-14d8f4ecd017",
+	"id": "c1a675b7-d77b-4e08-ab60-f588eb30a4c3",
 	"prevId": "00000000-0000-0000-0000-000000000000"
 }

@@ -14,7 +14,6 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { r2Storage, type R2StorageOptions } from '@payloadcms/storage-r2';
 import type { Block, PayloadComponent } from 'payload';
 import { buildConfig } from 'payload';
-import type { GetPlatformProxyOptions } from 'wrangler';
 import { isAdmin, isLoggedIn, publicReadAccess } from './access';
 import { withCacheInvalidation } from './cache';
 import { Blog } from './collections/Blog';
@@ -372,6 +371,6 @@ function getCloudflareContextFromWrangler(options?: {
 			environment,
 			// Use remote bindings to connect to actual Cloudflare D1/R2 instead of local
 			remoteBindings: options?.useRemoteBindings,
-		} satisfies GetPlatformProxyOptions),
+		}),
 	);
 }

@@ -1,7 +1,9 @@
 import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-d1-sqlite';
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
-	await db.run(sql`ALTER TABLE \`market_areas\` ADD \`facebook_url\` text;`);
+	await db.run(
+		sql`ALTER TABLE \`market_areas\` ADD \`program_schedule\` text;`,
+	);
 }
 
 export async function down({
@@ -9,5 +11,7 @@ export async function down({
 	payload,
 	req,
 }: MigrateDownArgs): Promise<void> {
-	await db.run(sql`ALTER TABLE \`market_areas\` DROP COLUMN \`facebook_url\`;`);
+	await db.run(
+		sql`ALTER TABLE \`market_areas\` DROP COLUMN \`program_schedule\`;`,
+	);
 }

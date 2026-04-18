@@ -81,7 +81,16 @@ export const MarketArea: CollectionConfig = {
 			label: 'Facebook Page URL',
 			type: 'text',
 			admin: {
-				description: 'Optional Facebook page URL for this market area. This will be rendered as a button with the Facebook icon on the front end website sfti-radio.net',
+				description:
+					'Optional Facebook page URL for this market area. This will be rendered as a button with the Facebook icon on the front end website sfti-radio.net',
+			},
+		},
+		{
+			name: 'programSchedule',
+			type: 'textarea',
+			admin: {
+				description:
+					'Optional program schedule for the market area. Enter each time slot on a new line',
 			},
 		},
 		{
