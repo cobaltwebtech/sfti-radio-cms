@@ -76,6 +76,7 @@ export interface Config {
 		'local-events': LocalEvent;
 		churches: Church;
 		schools: School;
+		'daily-prayer': DailyPrayer;
 		'file-uploads': FileUpload;
 		forms: Form;
 		'form-submissions': FormSubmission;
@@ -100,6 +101,7 @@ export interface Config {
 		'local-events': LocalEventsSelect<false> | LocalEventsSelect<true>;
 		churches: ChurchesSelect<false> | ChurchesSelect<true>;
 		schools: SchoolsSelect<false> | SchoolsSelect<true>;
+		'daily-prayer': DailyPrayerSelect<false> | DailyPrayerSelect<true>;
 		'file-uploads': FileUploadsSelect<false> | FileUploadsSelect<true>;
 		forms: FormsSelect<false> | FormsSelect<true>;
 		'form-submissions':
@@ -662,6 +664,66 @@ export interface School {
 	_status?: ('draft' | 'published') | null;
 }
 /**
+ * Manage daily prayer entries by month. Create one entry per month and add daily prayers for each day.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "daily-prayer".
+ */
+export interface DailyPrayer {
+	id: number;
+	title?: string | null;
+	/**
+	 * Select the month for this prayer collection
+	 */
+	month:
+		| '1'
+		| '2'
+		| '3'
+		| '4'
+		| '5'
+		| '6'
+		| '7'
+		| '8'
+		| '9'
+		| '10'
+		| '11'
+		| '12';
+	/**
+	 * The year for this prayer collection
+	 */
+	year: number;
+	/**
+	 * Add a prayer entry for each day of the month
+	 */
+	dailyPrayers: {
+		/**
+		 * Day of the month
+		 */
+		day: number;
+		/**
+		 * Enter daily prayer text
+		 */
+		prayer: {
+			root: {
+				type: string;
+				children: {
+					type: any;
+					version: number;
+					[k: string]: unknown;
+				}[];
+				direction: ('ltr' | 'rtl') | null;
+				format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+				indent: number;
+				version: number;
+			};
+			[k: string]: unknown;
+		};
+		id?: string | null;
+	}[];
+	updatedAt: string;
+	createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "file-uploads".
  */
@@ -848,8 +910,26 @@ export interface Form {
 				| {
 						name: string;
 						label?: string | null;
+						/**
+						 * Select which upload collection to store files in
+						 */
+						uploadCollection: string;
+						/**
+						 * Restrict allowed file types (e.g., image/*, application/pdf). Leave empty to allow all types.
+						 */
+						mimeTypes?:
+							| {
+									mimeType: string;
+									id?: string | null;
+							  }[]
+							| null;
 						width?: number | null;
+						/**
+						 * Maximum file size in bytes. Leave empty for no limit.
+						 */
+						maxFileSize?: number | null;
 						required?: boolean | null;
+						multiple?: boolean | null;
 						id?: string | null;
 						blockName?: string | null;
 						blockType: 'upload';
@@ -1022,6 +1102,10 @@ export interface PayloadLockedDocument {
 		| ({
 				relationTo: 'schools';
 				value: number | School;
+		  } | null)
+		| ({
+				relationTo: 'daily-prayer';
+				value: number | DailyPrayer;
 		  } | null)
 		| ({
 				relationTo: 'file-uploads';
@@ -1297,6 +1381,24 @@ export interface SchoolsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "daily-prayer_select".
+ */
+export interface DailyPrayerSelect<T extends boolean = true> {
+	title?: T;
+	month?: T;
+	year?: T;
+	dailyPrayers?:
+		| T
+		| {
+				day?: T;
+				prayer?: T;
+				id?: T;
+		  };
+	updatedAt?: T;
+	createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "file-uploads_select".
  */
 export interface FileUploadsSelect<T extends boolean = true> {
@@ -1431,8 +1533,17 @@ export interface FormsSelect<T extends boolean = true> {
 					| {
 							name?: T;
 							label?: T;
+							uploadCollection?: T;
+							mimeTypes?:
+								| T
+								| {
+										mimeType?: T;
+										id?: T;
+								  };
 							width?: T;
+							maxFileSize?: T;
 							required?: T;
+							multiple?: T;
 							id?: T;
 							blockName?: T;
 					  };

@@ -11,13 +11,14 @@ import { resendAdapter } from '@payloadcms/email-resend';
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
 import { searchPlugin } from '@payloadcms/plugin-search';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
-import { r2Storage, type R2StorageOptions } from '@payloadcms/storage-r2';
+import { type R2StorageOptions, r2Storage } from '@payloadcms/storage-r2';
 import type { Block, PayloadComponent } from 'payload';
 import { buildConfig } from 'payload';
 import { isAdmin, isLoggedIn, publicReadAccess } from './access';
 import { withCacheInvalidation } from './cache';
 import { Blog } from './collections/Blog';
 import { Churches } from './collections/Churches';
+import { DailyPrayer } from './collections/DailyPrayer';
 import { FileUploads } from './collections/FileUploads';
 import { LocalEvents } from './collections/LocalEvents';
 import { MarketArea } from './collections/MarketArea';
@@ -155,6 +156,7 @@ export default buildConfig({
 		withCacheInvalidation(LocalEvents),
 		withCacheInvalidation(Churches),
 		withCacheInvalidation(Schools),
+		withCacheInvalidation(DailyPrayer),
 		FileUploads, // File uploads are not cached
 	],
 	editor: lexicalEditor(),
