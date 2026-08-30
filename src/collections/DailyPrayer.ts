@@ -123,6 +123,15 @@ export const DailyPrayer: CollectionConfig = {
 							},
 						},
 						{
+							name: 'youtubeLink',
+							type: 'text',
+							required: false,
+							admin: {
+								width: '90%',
+								description: 'Enter the YouTube live stream URL for the daily prayer',
+							},
+						},
+						{
 							name: 'prayer',
 							type: 'richText',
 							required: true,

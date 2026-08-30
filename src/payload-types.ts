@@ -661,6 +661,10 @@ export interface DailyPrayer {
      */
     day: number;
     /**
+     * Enter the YouTube live stream URL for the daily prayer
+     */
+    youtubeLink?: string | null;
+    /**
      * Enter daily prayer text
      */
     prayer: {
@@ -1337,6 +1341,7 @@ export interface DailyPrayerSelect<T extends boolean = true> {
     | T
     | {
         day?: T;
+        youtubeLink?: T;
         prayer?: T;
         id?: T;
       };
